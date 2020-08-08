@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div id="main-content" class="main-content col-md-6">
+        {{ function('flexible_content', 'group_component') }}
+      </div>
+
+      <aside id="sidebar-left" class="sidedebar-wrapper col-md-3 order-md-first">
+        {{ fn('sidebar', 'sidebar-left') }}
+      </aside>
+
+      <aside id="sidebar-right" class="sidedebar-wrapper col-md-3 order-md-last">
+        {{ fn('sidebar', 'sidebar-right') }}
+      </aside>
+    </div>
+  </div>
+{% endblock %}

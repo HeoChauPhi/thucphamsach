@@ -1,0 +1,8 @@
+<h3>{{ block_title }}</h3>
+<div class="social-list">
+  <ul class="social-list--items">
+    {% for item in block_social_list %}
+      <li class="social-item"><a href="{{ item.social_url }}">{{ item.social_icon.element }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

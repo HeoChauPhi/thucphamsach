@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div id="main-content" class="main-content col-md-8">
+      <div class="main-content-inner">
+        <h2 class="post-title">{{ post.title }}</h2>
+        <div class="post-date">{{ post.date }}</div>
+        <div class="post-content">{{ post.content|shortcodes }}</div>
+      </div>
+
+      <div class="post-actions">
+        {% if fn('get_the_tags', post.ID) %}
+          <div class="post-tags">
+            <div class="post_tags-label">{{ __('Tags') }}</div>
+            <ul class="post-tags-list">
+              {% for item in fn('get_the_tags', post.ID) %}
+                <li><a href="{{ fn('get_tag_link', item.term_id) }}">{{ item.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% include 'social-detail.twig' with {permalink: post.permalink, title: post.title, print_icon: 0} only %}
+      </div>
+
+      {% if function('comments_open') %}
+      {% include 'comments.twig' %}
+      {{ function('comment_form') }}
+      {% endif %}
+    </div>
+
+    <aside id="sidebar-left" class="sidedebar-wrapper col-md-4 order-md-first">
+      {{ fn('sidebar', 'sidebar-left') }}
+    </aside>
+  </div>
+</div>

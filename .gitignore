@@ -1,0 +1,86 @@
+# Composer Vendor Directory #
+#############################
+vendor/
+
+# Hidden Files #
+################
+.*
+.env
+!.gitignore
+!.env-sample
+!.travis.yml
+!.npm
+!.docksal/
+!.circleci/
+
+# NPM Modules #
+###############
+node_modules/
+
+# Webroot #
+###########
+!web/
+web/*
+web/.htaccess
+!web/index.php
+!web/wp-cli.yml
+!web/wp-config.php
+!web/wp-content/
+web/wp-content/*
+!web/wp-content/mu-plugins/
+web/wp-content/mu-plugins/*
+!web/wp-content/mu-plugins/alter_wpcfm_config_path.php
+!web/wp-content/plugins/
+web/wp-content/plugins/*
+!web/wp-content/themes
+web/wp-content/themes/*
+!web/wp-content/themes/twentyseventeen-child/
+!web/wp-content/themes/sekf/
+!web/private/
+web/private/*
+!web/private/config/
+!web/private/scripts/
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+
+# Logs and databases #
+######################
+*.log
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+
+# Vim generated files #
+######################
+*.un~
+
+# SASS #
+##########
+.sass-cache
+
+# PHP Storm #
+#############
+.idea
+
+# Don't ignore Slack icons #
+#################################
+!/web/slack-icons
+
+# Composer.lock
+composer.lock

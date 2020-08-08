@@ -1,0 +1,45 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+  <div class="container">
+
+  {% do action('woocommerce_before_single_product') %}
+
+  <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+
+    <div class="row">
+      <div class="entry-images col-md-7">
+        {% do action('woocommerce_before_single_product_summary') %}
+
+        {#<img src="{{ post.thumbnail.src('shop_single') }}" />#}
+      </div>
+
+      <div class="summary entry-summary col-md-5">
+          {% do action('woocommerce_single_product_summary') %}
+      </div>
+    </div>
+
+    {#% do action('woocommerce_after_single_product_summary') %#}
+
+    <div class="row">
+      <div class="col-md-7">
+        {% if product.description %}
+        {{ fn('wc_get_template', 'single-product/tabs/description.php') }}
+        {% endif %}
+        {% if product.has_attributes or product.has_dimensions or product.has_weight %}
+        {{ fn('wc_get_template', 'single-product/tabs/additional-information.php') }}
+        {% endif %}
+      </div>
+      <div class="col-md-5">{{ fn('comments_template') }}</div>
+    </div>
+
+    <meta itemprop="url" content="{{ post.link }}" />
+
+  </article>
+
+  {#% include ["woo/tease-product.twig"] with { products: related_products } %#}
+
+  {% do action('woocommerce_after_single_product') %}
+
+  </div>
+{% endblock  %}

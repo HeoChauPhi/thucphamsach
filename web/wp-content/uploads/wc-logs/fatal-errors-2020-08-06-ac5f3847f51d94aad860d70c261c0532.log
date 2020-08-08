@@ -1,0 +1,71 @@
+2020-08-06T13:49:17+00:00 CRITICAL Uncaught Twig\Error\SyntaxError: Unexpected token "name" of value "action" ("end of print statement" expected). in /var/www/web/wp-content/themes/custom_theme/templates/woo/single-product.twig:25
+Stack trace:
+#0 /var/www/vendor/twig/twig/src/Parser.php(143): Twig\TokenStream->expect(4)
+#1 /var/www/vendor/twig/twig/src/TokenParser/BlockTokenParser.php(45): Twig\Parser->subparse(Array, true)
+#2 /var/www/vendor/twig/twig/src/Parser.php(185): Twig\TokenParser\BlockTokenParser->parse(Object(Twig\Token))
+#3 /var/www/vendor/twig/twig/src/Parser.php(98): Twig\Parser->subparse(NULL, false)
+#4 /var/www/vendor/twig/twig/src/Environment.php(563): Twig\Parser->parse(Object(Twig\TokenStream))
+#5 /var/www/vendor/twig/twig/src/Environment.php(595): Twig\Environment->parse(Object(Twig\TokenStream))
+#6 /var/www/vendor/twig/twig/src/Environment.php(408): Twig\Environment->compileSource(Object(Twig\Source))
+#7 /var/www/vendor/twig/twig/src/Environment.php(381): Twig\Environment->loadClass('__TwigTemplate_...', 'templates/woo/s.. in /var/www/web/wp-content/themes/custom_theme/templates/woo/single-product.twig on line 25
+
+2020-08-06T13:49:27+00:00 CRITICAL Uncaught Error: Call to a member function has_weight() on array in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php:3322
+Stack trace:
+#0 /var/www/web/wp/wp-includes/class-wp-hook.php(287): wc_display_product_attributes(Array)
+#1 /var/www/web/wp/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/web/wp/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 [internal function]: do_action('woocommerce_pro...', Array)
+#4 /var/www/vendor/timber/timber/lib/Twig.php(39): call_user_func_array('do_action', Array)
+#5 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(90): Timber\Twig->Timber\{closure}(Array, 'woocommerce_pro...')
+#6 /var/www/vendor/twig/twig/src/Template.php(182): __TwigTemplate_09b7815035dd4ce29f1cf6a844936be3bfc08c8a95df1d03e9c375163a1b4e26->block_content(Array, Array)
+#7 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(111): Twig\Template->displayBlock('content', Array, Array)
+#8 /var/www/vendor/twig/tw in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php on line 3322
+
+2020-08-06T13:49:28+00:00 CRITICAL Uncaught Error: Call to a member function has_weight() on array in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php:3322
+Stack trace:
+#0 /var/www/web/wp/wp-includes/class-wp-hook.php(287): wc_display_product_attributes(Array)
+#1 /var/www/web/wp/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/web/wp/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 [internal function]: do_action('woocommerce_pro...', Array)
+#4 /var/www/vendor/timber/timber/lib/Twig.php(39): call_user_func_array('do_action', Array)
+#5 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(90): Timber\Twig->Timber\{closure}(Array, 'woocommerce_pro...')
+#6 /var/www/vendor/twig/twig/src/Template.php(182): __TwigTemplate_09b7815035dd4ce29f1cf6a844936be3bfc08c8a95df1d03e9c375163a1b4e26->block_content(Array, Array)
+#7 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(111): Twig\Template->displayBlock('content', Array, Array)
+#8 /var/www/vendor/twig/tw in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php on line 3322
+
+2020-08-06T13:49:29+00:00 CRITICAL Uncaught Error: Call to a member function has_weight() on array in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php:3322
+Stack trace:
+#0 /var/www/web/wp/wp-includes/class-wp-hook.php(287): wc_display_product_attributes(Array)
+#1 /var/www/web/wp/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/web/wp/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 [internal function]: do_action('woocommerce_pro...', Array)
+#4 /var/www/vendor/timber/timber/lib/Twig.php(39): call_user_func_array('do_action', Array)
+#5 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(90): Timber\Twig->Timber\{closure}(Array, 'woocommerce_pro...')
+#6 /var/www/vendor/twig/twig/src/Template.php(182): __TwigTemplate_09b7815035dd4ce29f1cf6a844936be3bfc08c8a95df1d03e9c375163a1b4e26->block_content(Array, Array)
+#7 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(111): Twig\Template->displayBlock('content', Array, Array)
+#8 /var/www/vendor/twig/tw in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php on line 3322
+
+2020-08-06T13:49:29+00:00 CRITICAL Uncaught Error: Call to a member function has_weight() on array in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php:3322
+Stack trace:
+#0 /var/www/web/wp/wp-includes/class-wp-hook.php(287): wc_display_product_attributes(Array)
+#1 /var/www/web/wp/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#2 /var/www/web/wp/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 [internal function]: do_action('woocommerce_pro...', Array)
+#4 /var/www/vendor/timber/timber/lib/Twig.php(39): call_user_func_array('do_action', Array)
+#5 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(90): Timber\Twig->Timber\{closure}(Array, 'woocommerce_pro...')
+#6 /var/www/vendor/twig/twig/src/Template.php(182): __TwigTemplate_09b7815035dd4ce29f1cf6a844936be3bfc08c8a95df1d03e9c375163a1b4e26->block_content(Array, Array)
+#7 /var/www/vendor/twig/twig/src/Environment.php(418) : eval()'d code(111): Twig\Template->displayBlock('content', Array, Array)
+#8 /var/www/vendor/twig/tw in /var/www/web/wp-content/plugins/woocommerce/includes/wc-template-functions.php on line 3322
+
+2020-08-06T14:18:46+00:00 CRITICAL Uncaught Twig\Error\SyntaxError: Unclosed "(". in /var/www/web/wp-content/themes/custom_theme/templates/woo/single-product.twig:26
+Stack trace:
+#0 /var/www/vendor/twig/twig/src/Lexer.php(292): Twig\Lexer->lexExpression()
+#1 /var/www/vendor/twig/twig/src/Lexer.php(186): Twig\Lexer->lexVar()
+#2 /var/www/vendor/twig/twig/src/Environment.php(542): Twig\Lexer->tokenize(Object(Twig\Source))
+#3 /var/www/vendor/twig/twig/src/Environment.php(595): Twig\Environment->tokenize(Object(Twig\Source))
+#4 /var/www/vendor/twig/twig/src/Environment.php(408): Twig\Environment->compileSource(Object(Twig\Source))
+#5 /var/www/vendor/twig/twig/src/Environment.php(381): Twig\Environment->loadClass('__TwigTemplate_...', 'templates/woo/s...', NULL)
+#6 /var/www/vendor/twig/twig/src/Environment.php(359): Twig\Environment->loadTemplate('templates/woo/s...')
+#7 /var/www/vendor/timber/timber/lib/Loader.php(78): Twig\Environment->load('templates/woo/s...')
+#8 /var/www/vendor/timber/timber/lib/Timber.php(334): Timber\Loader->render('templates in /var/www/web/wp-content/themes/custom_theme/templates/woo/single-product.twig on line 26
+

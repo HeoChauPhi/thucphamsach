@@ -1,0 +1,12 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+  <div class="container">
+    {{ post.content|shortcodes }}
+
+    {% if function('comments_open') %}
+    {% include 'comments.twig' %}
+    {{ function('comment_form') }}
+    {% endif %}
+  </div>
+{% endblock %}
