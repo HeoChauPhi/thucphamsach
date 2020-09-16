@@ -1,18 +1,40 @@
 html {
-  @include lato;
+  @include quicksandReg;
   font-size: $base-font-size;
   line-height: 1.5;
 }
 
 body {
-  @include lato;
+  @include quicksandReg;
   color: $color-base;
   font-size: inherit;
   line-height: inherit;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include quicksandBold;
+}
+
+h1 {
+  font-size: rem(60px);
+}
+
+h2 {
+  font-size: rem(30px);
+}
+
+h3, h4 {
+  font-size: rem(28px);
+}
+
 a {
   color: $color-link;
+  outline: none !important;
 
   &:hover {
     color: $color-link-hover;
@@ -24,4 +46,33 @@ a {
 img {
   height: auto;
   max-width: 100%;
+}
+
+.form-item {
+  margin-bottom: rem(30px);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+  background-color: $bg-form-field;
+  border-radius: rem(5px);
+  border: rem(1px) solid $bg-form-field;
+  display: block;
+  padding: rem(15px 20px);
+  width: 100%;
+
+  &:active,
+  &:hover,
+  &:focus,
+  &:visited {
+    border: rem(1px) solid $color-primary;
+    outline: none !important;
+  }
+}
+
+input[type="submit"],
+button {
+  @extend %btn;
 }

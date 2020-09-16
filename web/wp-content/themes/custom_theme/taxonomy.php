@@ -27,8 +27,10 @@ if (!isset($paged) || !$paged){
   $paged = 1;
 }
 
+$posts_per_page = get_option('posts_per_page');
+
 $context = Timber::get_context();
-$count = 16;
+$count = $posts_per_page;
 $context['count'] = $count;
 $context['paged'] = $paged;
 $taxonomy = new TimberTerm();

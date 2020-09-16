@@ -3,15 +3,20 @@
 {% extends 'layout.twig' %}
 
 {% block feature %}
-  <div id="feature" class="feature">
+  <div id="feature" class="feature-wrapper">
     {#<div class="feature-media parallax-window" data-parallax="scroll" data-image-src="{{ post.get_field('feature_banner').url }}" title="{{ post.get_field('feature_banner').title|replace({'-': ' ', '_': ' '}) }}"></div>#}
     <div class="container">
-    
-    {% if term.name is defined %}
-      <h2 id="page-title">{{term.name}}</h2>
-    {% endif %}
-    
     {% include 'breadcrumb.twig' with {tax_title: tax_title} %}
+    
+    <div class="group-title">
+      {% if term.name is defined %}
+        <h2 id="page-title">{{ term.name }}</h2>
+      {% endif %}
+      <div class="block-header-description">
+        {{ fn('term_description', term.ID) }}
+      </div>
+    </div>
+    
     </div>
   </div>
 {% endblock %}

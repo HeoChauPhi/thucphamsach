@@ -16,7 +16,7 @@ require_once('init/options/option.php');
 if(!is_admin()) {
   // Add scripts
   function ct_libs_scripts() {
-    wp_register_script('lib-slick', get_stylesheet_directory_uri() . '/dist/js/libs/slick.min.js', array('jquery'), FALSE, '1.8.1', TRUE);
+    wp_register_script('lib-slick', get_stylesheet_directory_uri() . '/dist/js/libs/slick.min.js', array('jquery'), FALSE, '1.8.0', TRUE);
     wp_enqueue_script('lib-slick');
 
     wp_register_script('Bootstrap', get_stylesheet_directory_uri() . '/dist/bootstrap/bootstrap.min.js', array('jquery'), FALSE, '4.5.0', TRUE);
@@ -31,8 +31,11 @@ if(!is_admin()) {
     wp_register_script('lib-parallax', get_stylesheet_directory_uri() . '/dist/js/libs/parallax.min.js', array('jquery'),  FALSE, '1.5.0', TRUE);
     wp_enqueue_script('lib-parallax');
 
+    wp_register_script('lib-googlemap', get_stylesheet_directory_uri() . '/dist/js/libs/jquery.google-build-map.js', array('jquery'),  FALSE, '4.3.0', TRUE);
+    wp_enqueue_script('lib-googlemap');
+
     wp_register_script('script', get_stylesheet_directory_uri() . '/dist/js/script.js', FALSE, '1.0.0', TRUE);
-    wp_localize_script( 'script', 'paginationAjax', array( 'ajaxurl' => admin_url('admin-ajax.php' )));
+    wp_localize_script( 'script', 'themeAjax', array( 'ajaxurl' => admin_url('admin-ajax.php' )));
     wp_enqueue_script('script');
   }
   add_action('wp_print_scripts', 'ct_libs_scripts');
@@ -77,61 +80,39 @@ add_action('admin_init', 'ct_admin_styles');
  *
  */
 function ct_create_custom_post_types() {
-  // Hotel
-  register_post_type( '{CUSTOM-POST-TYPE}', array(
-    'labels' => array(
-      'name'               => _x( '{CUSTOM-POST-TYPE}s', 'post type general name', 'custom_theme' ),
-      'singular_name'      => _x( '{CUSTOM-POST-TYPE}', 'post type singular name', 'custom_theme' ),
-      'menu_name'          => _x( '{CUSTOM-POST-TYPE}s', 'admin menu', 'custom_theme' ),
-      'name_admin_bar'     => _x( '{CUSTOM-POST-TYPE}', 'add new on admin bar', 'custom_theme' ),
-      'add_new'            => _x( 'Add New', '{CUSTOM-POST-TYPE}', 'custom_theme' ),
-      'add_new_item'       => __( 'Add New {CUSTOM-POST-TYPE}', 'custom_theme' ),
-      'new_item'           => __( 'New {CUSTOM-POST-TYPE}', 'custom_theme' ),
-      'edit_item'          => __( 'Edit {CUSTOM-POST-TYPE}', 'custom_theme' ),
-      'view_item'          => __( 'View {CUSTOM-POST-TYPE}', 'custom_theme' ),
-      'all_items'          => __( 'All {CUSTOM-POST-TYPE}s', 'custom_theme' ),
-      'search_items'       => __( 'Search {CUSTOM-POST-TYPE}s', 'custom_theme' ),
-      'parent_item_colon'  => __( 'Parent {CUSTOM-POST-TYPE}s:', 'custom_theme' ),
-      'not_found'          => __( 'No {CUSTOM-POST-TYPE}s found.', 'custom_theme' ),
-      'not_found_in_trash' => __( 'No {CUSTOM-POST-TYPE}s found in Trash.', 'custom_theme' )
-    ),
-    'description'           => __( 'Description.', 'custom_theme' ),
-    'public'                => true,
-    'publicly_queryable'    => true,
-    'show_ui'               => true,
-    'show_in_menu'          => true,
-    'query_var'             => true,
-    'rewrite'               => array('slug' => '{CUSTOM-POST-TYPE}'),
-    'has_archive'           => true,
-    'hierarchical'          => false,
-    'menu_position'         => 28,
-    'supports'              => array( 'title', 'editor' ),
-    'capabilities'          => array(
-      // Meta capabilities
-
-      'edit_post'               => "edit_{CUSTOM-POST-TYPE}",
-      'read_post'               => "read_{CUSTOM-POST-TYPE}",
-      'delete_post'             => "delete_{CUSTOM-POST-TYPE}",
-
-      'edit_posts'              => "edit_{CUSTOM-POST-TYPE}s",
-      'edit_others_posts'       => "edit_others_{CUSTOM-POST-TYPE}s",
-      'publish_posts'           => "publish_{CUSTOM-POST-TYPE}s",
-      'read_private_posts'      => "read_private_{CUSTOM-POST-TYPE}s",
-
-      // Primitive capabilities used within map_meta_cap():
-
-      'read'                    => "read",
-      'delete_posts'            => "delete_{CUSTOM-POST-TYPE}s",
-      'delete_private_posts'    => "delete_private_{CUSTOM-POST-TYPE}s",
-      'delete_published_posts'  => "delete_published_{CUSTOM-POST-TYPE}s",
-      'delete_others_posts'     => "delete_others_{CUSTOM-POST-TYPE}s",
-      'edit_private_posts'      => "edit_private_{CUSTOM-POST-TYPE}s",
-      'edit_published_posts'    => "edit_published_{CUSTOM-POST-TYPE}s",
-      'create_posts'            => "edit_{CUSTOM-POST-TYPE}s",
-    ),
-    // as pointed out by iEmanuele, adding map_meta_cap will map the meta correctly 
-    'map_meta_cap' => true
-  ));
+  // Blocks UI
+  register_post_type( 'block_ui',
+    array(
+      'labels' => array(
+        'name'               => _x( 'Blocks UI', 'post type general name', 'custom_block_ui' ),
+        'singular_name'      => _x( 'Block UI', 'post type singular name', 'custom_block_ui' ),
+        'menu_name'          => _x( 'Blocks UI', 'admin menu', 'custom_block_ui' ),
+        'name_admin_bar'     => _x( 'Block UI', 'add new on admin bar', 'custom_block_ui' ),
+        'add_new'            => _x( 'Add New', 'Block UI', 'custom_block_ui' ),
+        'add_new_item'       => __( 'Add New Block UI', 'custom_block_ui' ),
+        'new_item'           => __( 'New Block UI', 'custom_block_ui' ),
+        'edit_item'          => __( 'Edit Block UI', 'custom_block_ui' ),
+        'view_item'          => __( 'View Block UI', 'custom_block_ui' ),
+        'all_items'          => __( 'All Blocks UI', 'custom_block_ui' ),
+        'search_items'       => __( 'Search Blocks UI', 'custom_block_ui' ),
+        'parent_item_colon'  => __( 'Parent Blocks UI:', 'custom_block_ui' ),
+        'not_found'          => __( 'No Blocks UI found.', 'custom_block_ui' ),
+        'not_found_in_trash' => __( 'No Blocks UI found in Trash.', 'custom_block_ui' )
+      ),
+      'description'           => __( 'Description.', 'custom_block_ui' ),
+      'public'                => true,
+      'publicly_queryable'    => true,
+      'show_ui'               => true,
+      'show_in_menu'          => true,
+      'query_var'             => true,
+      'rewrite'               => array('slug' => 'block_ui'),
+      'has_archive'           => true,
+      'hierarchical'          => false,
+      'menu_position'         => 20,
+      'supports'              => array( 'title', 'editor' ),
+      'capability_type'       => 'post',
+    )
+  );
 }
 //add_action( 'init', 'ct_create_custom_post_types' );
 
@@ -202,3 +183,120 @@ function ct_change_post_object_to_new() {
 }
 
 // Custom for Woocommerce
+function timber_set_product( $post ) {
+  global $product;
+
+  if ( is_woocommerce() ) {
+    $product = wc_get_product( $post->ID );
+  }
+}
+
+add_filter( 'woocommerce_reviews_title', 'ct_change_reviews_heading', 10, 3 );
+function ct_change_reviews_heading( $heading, $count, $product ) {
+  $heading = __("Review", "custom_theme") . ' (' . $count . ')';
+  return $heading;
+}
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+add_action( 'woocommerce_single_product_summary', 'ct_change_template_single_title', 5 );
+function ct_change_template_single_title() {
+  the_title( '<h2 class="product_title entry-title">', '</h2>' );
+}
+
+
+/*$exited_post = get_page_by_title('Trung tâm thương mại - Việt Nam tại Lô1/20 KĐT Ngã Năm Sân bay Cát Bi, Ngô Quyền, Hải Phòng', OBJECT, 'store_system');
+if ( $exited_post ) {
+  print_r($exited_post);
+}*/
+
+/*function get_posts_by_title($page_title, $post_type = false, $output = OBJECT ) {
+  global $wpdb;
+
+  //Handle specific post type?
+  $post_type_where = $post_type ? 'AND post_type = %s' : '';
+
+  //Query all columns so as not to use get_post()
+  $results = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_title = %s $post_type_where AND post_status = 'publish'", $page_title, $post_type ? $post_type : '' ) );
+
+  if ( $results ){
+    $output = array();
+    foreach ( $results as $post ){
+      $output[] = $post;
+    }
+    return $output;
+  }
+  return null;
+}
+
+//This should get you an array of all posts with 'Foo Bar' as the title
+print_r(get_posts_by_title('Số 9-11, Ngõ Thổ Quan, Quận Đống Đa, Thành Phố Hà Nội', 'store_system'));*/
+
+/*function ct_vietnam_regions($city) {
+  $vietnam_regions = array(
+    'Northern Vietnam' => array(
+      'Điện Biên', 'Hòa Bình', 'Lai Châu', 'Lào Cai', 'Sơn La', 'Yên Bái', 'Bắc Giang', 'Bắc Kạn', 'Cao Bằng', 'Hà Giang', 'Lạng Sơn', 'Phú Thọ', 'Quảng Ninh', 'Thái Nguyên', 'Tuyên Quang', 'Bắc Ninh', 'Hà Nam', 'Hà Nội', 'Hải Dương', 'Hải Phòng', 'Hưng Yên', 'Nam Định', 'Ninh Bình', 'Thái Bình', 'Vĩnh Phúc'
+    ),
+    'Central Vietnam' => array(
+      'Hà Tĩnh', 'Nghệ An', 'Quảng Bình', 'Quảng Trị', 'Thanh Hóa', 'Thừa Thiên Huế', 'Bình Định', 'Bình Thuận', 'Đà Nẵng', 'Khánh Hòa', 'Ninh Thuận', 'Phú Yên', 'Quảng Nam', 'Quảng Ngãi', 'Đắk Lắk', 'Đắk Nông', 'Gia Lai', 'Kon Tum', 'Lâm Đồng'
+    ),
+    'Southern Vietnam' => array(
+      'Bà Rịa - Vũng Tàu', 'Bình Dương', 'Bình Phước', 'Đồng Nai', 'Saigon', 'Tây Ninh', 'An Giang', 'Bến Tre', 'Bạc Liêu', 'Cà Mau', 'Cần Thơ', 'Đồng Tháp', 'Hậu Giang', 'Kiên Giang', 'Long An', 'Sóc Trăng', 'Tiền Giang', 'Trà Vinh', 'Vĩnh Long'
+    )
+  );
+  
+  $area = __('vietnam', 'custom_theme');
+
+  foreach ($vietnam_regions as $key => $value) {
+    if ( in_array($city, $value) ) {
+      $area = __($key, 'custom_theme');
+      break;
+    }
+  }
+
+  return $area;
+}
+
+function ct_get_address($lat,$lng) {
+  $url    = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&key=AIzaSyDXTzcKeymQWRfKZgZGf_N6WuCK1HTxduo';
+  $json   = @file_get_contents($url);
+  $data   = json_decode($json);
+  $status = $data->status;
+  
+  if($status=="OK") {
+   $address_components = $data->results[0]->address_components;
+
+   $address_arr = array();
+   $map_area = null;
+   $map_city = null;
+   $map_district = null;
+
+   foreach ($address_components as $key) {
+     if ($key->types[0] == 'administrative_area_level_1') {
+       $map_area = $key->long_name;
+     }
+
+     if ($key->types[0] == 'locality' || $key->types[0] == 'administrative_area_level_2') {
+       $map_city = $key->long_name;
+     }
+
+     if ($key->types[0] == 'route') {
+       $map_district = $key->long_name;
+     }
+   }
+
+   array_push($address_arr, $map_area, $map_city, $map_district);
+   return $address_arr;
+  } else {
+   return false;
+  }
+}
+echo ct_vietnam_regions('Sơn La') . '<br>';
+echo ct_vietnam_regions('Thừa Thiên Huế') . '<br>';
+echo ct_vietnam_regions('Bà Rịa - Vũng Tàu') . '<br>';
+echo ct_vietnam_regions('Gia Lai') . '<br>';
+echo ct_vietnam_regions('Heochaua') . '<br>';
+$location_arr = ct_get_address('10.3678715787925', '107.076285285975');
+print_r($location_arr);*/
+
+//wp_delete_post(539);

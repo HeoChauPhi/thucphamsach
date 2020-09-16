@@ -2,11 +2,13 @@
 
 {% block content %}
   <div class="container">
-    {{ post.content|shortcodes }}
+    <div class="main-content-inner {% if container_option %}container-small{% endif %}">
+      {{ post.content|shortcodes }}
 
-    {% if function('comments_open') %}
-    {% include 'comments.twig' %}
-    {{ function('comment_form') }}
-    {% endif %}
+      {% if function('comments_open') %}
+      {% include 'comments.twig' %}
+      {{ function('comment_form') }}
+      {% endif %}
+    </div>
   </div>
 {% endblock %}

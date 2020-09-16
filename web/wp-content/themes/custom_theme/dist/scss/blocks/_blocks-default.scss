@@ -1,0 +1,15 @@
+.group-title {
+  color: $white;
+  text-align: center;
+
+  .block-title {
+    @include dancing;
+    color: $color-link;
+    font-size: rem(60px);
+    margin-bottom: rem(20px);
+  }
+
+  .block-description {
+    font-size: rem(18px);
+  }
+}

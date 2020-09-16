@@ -2,14 +2,20 @@
   margin: 0 !important;
 }
 
+.aligncenter {
+  display: block;
+  margin-left: auto;  
+  margin-right: auto;  
+}
+
 .alignleft {
   float: left;
-  margin-right: rem(20px);
+  margin: rem(8px 16px 8px 0);
 }
 
 .alignright {
   float: right;
-  margin-left: rem(20px);
+  margin: rem(8px 0 8px 16px);
 }
 
 .hidden-on-desktop {
@@ -72,4 +78,149 @@
 @keyframes controlButtonown {
   from {top: rem(10px);}
   to {top: rem(20px);}
+}
+
+.hidden-page-title {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: rem(1px);
+  margin: rem(-1px);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: rem(1px);
+}
+
+%btn {
+  background-color: $color-link;
+  border-radius: rem(5px);
+  border: none;
+  color: $white;
+  font-size: rem(16px);
+  font-weight: 700;
+  min-width: rem(130px);
+  padding: rem(15px 20px);
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: darken($color-link, 15%);
+    outline: none !important;
+  }
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn {
+  @extend %btn;
+}
+
+%menu-angle-double-right {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    &:before {
+      @extend .fas;
+      @extend .fa-angle-double-right;
+      font-size: rem(10px);
+      margin-right: rem(7px);
+    }
+  }
+}
+
+.post-link-page {
+  text-align: center;
+
+  a {
+    @extend %btn;
+    border-radius: rem(500px);
+    display: inline-block;
+    padding: rem(10px 25px);
+  } 
+}
+
+.onsale {
+  @include roboto;
+  background-color: $color-link-hover;
+  border-radius: rem(500px);
+  color: $color-link;
+  font-size: rem(14px);
+  font-weight: 700;
+  height: rem(40px);
+  line-height: 2.9;
+  text-align: center;
+  width: rem(40px);
+}
+
+// Woocommerce
+%add-to-cart {
+  background: transparent;
+  border-radius: rem(500px);
+  border: rem(1px) solid $color-link;
+  color: $color-link;
+  font-weight: 400;
+  line-height: inherit;
+  padding: rem(7px 50px 7px 20px);
+
+  &:before {
+    @extend .fas;
+    @extend .fa-cart-plus;
+    font-size: rem(20px);
+    position: absolute;
+    right: rem(20px);
+  }
+
+  &:hover {
+    background-color: $color-link;
+    color: $white;
+    font-weight: 700;
+  }
+}
+
+// Quantity style
+.group-quantity {
+  @include quicksandBold;
+  align-items: center;
+  border-radius: rem(3px);
+  border: rem(1px) solid $bg-form-field;
+  display: flex;
+  justify-content: center;
+  max-width: 130px;
+  overflow: hidden;
+
+  input.qty {
+    border: none;
+    flex: 1;
+    text-align: center;
+
+    &::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+
+  .qty-control {
+    background-color: $bg-form-field;
+    cursor: pointer;
+    padding: rem(9px 15px);
+  }
+}
+
+// Ajax load more
+.ajax-load-icon {
+  background-image: url(../images/ajax-loader-transparent.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  height: rem(32px);
+  width: rem(32px);
 }

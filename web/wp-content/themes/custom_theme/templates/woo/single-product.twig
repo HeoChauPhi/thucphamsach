@@ -2,44 +2,64 @@
 
 {% block content %}
   <div class="container">
+    <div class="main-content-inner">
 
-  {% do action('woocommerce_before_single_product') %}
+      {% do action('woocommerce_before_single_product') %}
 
-  <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+      <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
 
-    <div class="row">
-      <div class="entry-images col-md-7">
-        {% do action('woocommerce_before_single_product_summary') %}
+        <div class="row product-summary">
+          <div class="entry-images col-md-7">
+            <div class="entry-images-inner">
+              {% do action('woocommerce_before_single_product_summary') %}
 
-        {#<img src="{{ post.thumbnail.src('shop_single') }}" />#}
-      </div>
+              {#<img src="{{ post.thumbnail.src('shop_single') }}" />#}
+            </div>
+          </div>
 
-      <div class="summary entry-summary col-md-5">
-          {% do action('woocommerce_single_product_summary') %}
-      </div>
+          <div class="summary entry-summary col-md-5">
+              {% do action('woocommerce_single_product_summary') %}
+          </div>
+        </div>
+
+        {#% do action('woocommerce_after_single_product_summary') %#}
+
+        <div class="row product-informations">
+          <div class="col-md-7">
+            {% if product.description %}
+            <div class="product-description">
+              {{ fn('wc_get_template', 'single-product/tabs/description.php') }}
+            </div>
+            {% endif %}
+            {% if product.has_attributes or product.has_dimensions or product.has_weight %}
+            <div class="product-information">
+              {{ fn('wc_get_template', 'single-product/tabs/additional-information.php') }}
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-md-5 product-comment">{{ fn('comments_template') }}</div>
+        </div>
+
+        <meta itemprop="url" content="{{ post.link }}" />
+
+      </article>
+
+      {% do action('woocommerce_after_single_product') %}
+
     </div>
 
-    {#% do action('woocommerce_after_single_product_summary') %#}
 
-    <div class="row">
-      <div class="col-md-7">
-        {% if product.description %}
-        {{ fn('wc_get_template', 'single-product/tabs/description.php') }}
-        {% endif %}
-        {% if product.has_attributes or product.has_dimensions or product.has_weight %}
-        {{ fn('wc_get_template', 'single-product/tabs/additional-information.php') }}
-        {% endif %}
+    {% if related_products %}
+      <div class="block-related-product">
+        <h3 class="block-title">{{ __('Related products', 'custom_theme') }}</h3>
+        {#{ related_products|print_r }#}
+        <div class="archive-product-list related-product-list">
+          {% for post in related_products %}
+            {% include ["woo/tease-product.twig"] with { post: post } %}
+          {% endfor %}
+        </div>
+        <div class="post-link-page"><a href="{{ fn('get_permalink', fn('get_option', 'woocommerce_shop_page_id')) }}" target="_blank">{{ __('Read More', 'custom_theme') }}</a></div>
       </div>
-      <div class="col-md-5">{{ fn('comments_template') }}</div>
-    </div>
-
-    <meta itemprop="url" content="{{ post.link }}" />
-
-  </article>
-
-  {#% include ["woo/tease-product.twig"] with { products: related_products } %#}
-
-  {% do action('woocommerce_after_single_product') %}
-
+    {% endif %}
   </div>
 {% endblock  %}

@@ -1,0 +1,135 @@
+main {
+  background-image: url(../images/background/bg-main.png);
+  background-position: center top;
+  background-size: 100% auto;
+  padding-bottom: rem(75px);
+}
+
+body:not(.home) {
+  main {
+    position: relative;
+  }
+
+  .feature-wrapper,
+  .main-wrapper {
+    &:before,
+    &:after {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      content: "";
+      position: absolute;
+    }
+
+    > .container {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .feature-wrapper {
+    &:before {
+      background-image: url(../images/background/bg-feature-before.png);
+      height: rem(323px);
+      left: rem(30px);
+      top: rem(100px);
+      width: rem(225px);
+    }
+
+    &:after {
+      background-image: url(../images/background/bg-feature-after.png);
+      height: rem(256px);
+      right: 0;
+      top: rem(15px);
+      width: rem(254px);
+    }
+  }
+
+  .main-wrapper {
+    &:before {
+      background-image: url(../images/background/bg-main-before.png);
+      height: rem(327px);
+      left: rem(-195px);
+      bottom: rem(260px);
+      width: rem(329px);
+    }
+
+    &:after {
+      background-image: url(../images/background/bg-main-after.png);
+      height: rem(351px);
+      right: 0;
+      bottom: rem(-87px);
+      width: rem(257px);
+    }
+  }
+}
+
+.feature-wrapper {
+  color: $white;
+  margin-bottom: rem(35px);
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $color-link;
+    }
+  }
+}
+
+#page-title {
+  @include dancing;
+  color: $color-link;
+  font-size: rem(60px);
+  margin-bottom: rem(20px);
+}
+
+.group-title {
+  text-align: center;
+}
+
+.block-header-description {
+  font-size: rem(18px);
+}
+
+.main-content-inner {
+  background-color: $white;
+  border-radius: rem(7px);
+  padding: rem(50px 45px);
+}
+
+.container-small {
+  margin: 0 auto;
+  max-width: 100%;
+  width: rem($page-container-small);
+}
+
+.main-wrapper,
+.main-content-inner {
+  .so-widget-sow-icon {
+    clear: left;
+    min-width: rem(30px);
+
+    &.float-left {
+      + * {
+        margin-bottom: rem(30px);
+        margin-top: rem(5px);
+      }
+    }
+  }
+
+ /*  .gallery-circle-images {
+    .sow-image-grid-image {
+      border-radius: rem(500px);
+      height: rem(230px);
+      margin: rem(0 20px 20px);
+      overflow: hidden;
+      padding: 0 !important;
+      width: rem(230px);
+
+      img {
+        width: 100%;
+      }
+    }
+  } */
+}

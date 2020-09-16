@@ -57,7 +57,7 @@
           elementType: "all",
           stylers: [
             {
-              visibility: "off"
+              visibility: "on"
             }
           ]
         },
@@ -87,7 +87,7 @@
           elementType: "labels.icon",
           stylers: [
             {
-              visibility: "off"
+              visibility: "on"
             }
           ]
         },
@@ -96,7 +96,7 @@
           elementType: "all",
           stylers: [
             {
-              visibility: "off"
+              visibility: "on"
             }
           ]
         },

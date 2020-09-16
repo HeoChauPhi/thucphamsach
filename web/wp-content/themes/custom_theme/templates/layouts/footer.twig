@@ -2,22 +2,28 @@
   <footer id="footer" class="footer footer-wrapper">
     <div class="footer-top">
       <div class="container">
-        {{ fn('sidebar', 'footer-top') }}
+        <div class="footer-inner">
+          {{ fn('sidebar', 'footer-top') }}
+        </div>
       </div>
     </div>
 
     <div class="footer-panel">
       <div class="container">
-        {{ fn('sidebar', 'footer-panel') }}
+        <div class="footer-inner">
+          {{ fn('sidebar', 'footer-panel') }}
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container">
-        {{ fn('sidebar', 'footer-bottom') }}
+        <div class="footer-inner">
+          {{ fn('sidebar', 'footer-bottom') }}
+        </div>
       </div>
     </div>
 
-    <div class="back-to-top js-back-top">{{ __('Back to Top', 'custom_theme') }}</div>
+    {#<div class="back-to-top js-back-top">{{ __('Back to Top', 'custom_theme') }}</div>#}
   </footer>
 {% endblock %}

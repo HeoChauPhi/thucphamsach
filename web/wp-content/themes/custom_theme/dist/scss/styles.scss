@@ -1,9 +1,6 @@
 // Default variables.
 @import 'default-variables';
 
-// Base-theme overrides.
-//@import 'overrides';
-
 // Child-theme custom.
 @import 'libs/sass-compass/compass';
 @import 'libs/fontawesome/fontawesome';
@@ -18,6 +15,9 @@
 @import 'base/fonts';
 @import 'base/typography';
 @import 'base/helper';
+
+// Base-theme overrides.
+@import 'base/bootstrap-overrides';
 
 @import 'layout/navigation';
 @import 'layout/header';

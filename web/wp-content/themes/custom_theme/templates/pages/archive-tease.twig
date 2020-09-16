@@ -1,9 +1,45 @@
-<article class="post post-{{ post.post_type }}">
-  <div class="post-picture">
-    <a href="{{post.link}}"><img src="{{post.thumbnail.src}}" class="feature" /></a>
-  </div>
-  <div class="post-content">
-    <h3><a href="{{post.link}}">{{ post.title }}</a></h3>
-    {{post.content|excerpt(30)}}
-  </div>
-</article>
+{% if post_recent %}
+
+  <article class="post archive-{{ post.post_type }}-item">
+    <div class="archive-item-inner">
+      {% if display_post_image and post.thumbnail %}
+      <div class="post-picture">
+        <a href="{{ post.link }}"><img src="{{ post.thumbnail.src|resize(290, 180) }}" class="feature" /></a>
+      </div>
+      {% endif %}
+      <div class="post-content">
+        <h3 class="post-title">{{ post.title }}</h3>
+
+        {% if display_post_desc and post.post_excerpt %}
+        <div class="post-excerpt">{{ post.post_excerpt|excerpt(30) }}</div>
+        {% endif %}
+
+        {% if display_post_read_more %}
+        <div class="post-read-more"><a class="post-link" href="{{ post.link }}">{{ __('Read more', 'custom_theme') }} <i class="fas fa-angle-double-right post-link-icon"></i></a></div>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+
+{% else %}
+
+  <article class="col-md-3 post archive-{{ post.post_type }}-item" data-post-id="{{ post.ID }}">
+    <div class="archive-item-inner">
+      {% if post.thumbnail %}
+      <div class="post-picture">
+        <a href="{{ post.link }}"><img src="{{ post.thumbnail.src|resize(290, 180) }}" class="feature" /></a>
+      </div>
+      {% endif %}
+      <div class="post-content">
+        <h3 class="post-title">{{ post.title }}</h3>
+
+        {% if post.post_excerpt %}
+        <div class="post-excerpt">{{ post.post_excerpt|excerpt(30) }}</div>
+        {% endif %}
+
+        <div class="post-read-more"><a class="post-link" href="{{ post.link }}">{{ __('Read more', 'custom_theme') }} <i class="fas fa-angle-double-right post-link-icon"></i></a></div>
+      </div>
+    </div>
+  </article>
+
+{% endif %}

@@ -17,40 +17,66 @@ $mobile: 480px;
 
 // Set the proper directory for the Bootstrap Glyphicon font.
 $icon-font-path: '../bootstrap/assets/fonts/bootstrap/';
+$container: 1280px !default;
 $container-large-desktop: 1170px !default;
+$page-container-small: 820px;
 
 // Fonts.
-@mixin opensans {
-  font-family: 'Open Sans', sans-serif;
+@mixin dancing {
+  font-family: 'Dancing Script', cursive;
 }
 
-@mixin lato {
-  font-family: 'Lato', sans-serif;
+@mixin quicksandReg {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
 }
 
-@mixin myriadProBold {
-  font-family: 'MyriadProBold', sans-serif;
+@mixin quicksandMed {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+
+@mixin quicksandBold {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+@mixin roboto {
+  font-family: 'Roboto', sans-serif;
 }
 
 $base-font-size: 14px;
 
 // Color.
-$red: #26baff;
-$red-dark: #232044;
+$red: #c1141f;
+$red-dark: #f72936;
+$yellow: #ffff00;
+$ping: #ff6868;
 $black: #000000;
 $white: #ffffff;
 
 $color-primary: $red;
 $color-second: $red-dark;
 
-$gray-3b: #3b3b3b;
+$gray-99: #999999;
+$gray-34: #343434;
+$gray-ee: #eeeeee;
+$gray-35: #353c48;
+$gray-cb: #cbcbcb;
 
 // Text color
-$color-base: $gray-3b;
-$color-link: $color-primary;
-$color-link-hover: $color-primary;
-$color-title: $color-second;
+$color-base: $black;
+$color-link: $color-second;
+$color-link-hover: $yellow;
+$color-title: $color-primary;
+$color-label: $gray-34;
 
 // bg color
-$color-line: $color-second;
-$bg-footer: $color-second;
+$bg-form-field: $gray-ee;
+$bg-social: $gray-35;
+$bg-social-hover: $ping;
+$bg-social-detail: $gray-cb;
+$bg-social-detail-hover: $ping;
+$color-line: $gray-99;
+$bg-header: $color-primary;
+$bg-footer: $ping;

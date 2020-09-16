@@ -1,20 +1,74 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+  <div class="container">
+    {#<div class="before-shop-loop">
+          {% do action('woocommerce_before_shop_loop') %}
+        </div>#}
 
-    {% do action('woocommerce_before_main_content') %}
+        {#{ category|print_r }#}
 
-    <div class="before-shop-loop">
-        {% do action('woocommerce_before_shop_loop') %}
-    </div>
-
-    <div class="loop">
-        {% for post in products %}
-            {% include ["woo/tease-product.twig"] %}
+    {% if fn('get_terms', 'product_cat') %}
+    <div class="product-cat-filter">
+      {#{ fn('get_terms', 'product_cat')|print_r }#}
+      {% set shop_id = fn('get_option', 'woocommerce_shop_page_id') %}
+      {% set current_term_id = null %}
+      {% if category %}
+        {% set current_term_id = category.term_id  %}
+      {% endif %}
+        
+      <ul class="filter-list">
+        {% if fn('is_shop') %}
+          <li class="filter-item filter-current">{{ __('All', 'custom_theme') }}</li>
+        {% else %}
+          <li class="filter-item"><a href="{{ fn('get_permalink', shop_id) }}">{{ __('All', 'custom_theme') }}</a></li>
+        {% endif %}
+        {% for item in fn('get_terms', 'product_cat') %}
+          {% if item.term_id == current_term_id %}
+            <li class="filter-item filter-current">{{ fn('esc_html', item.name) }}</li>
+          {% else %}
+            <li class="filter-item"><a href="{{ fn('esc_url', fn('get_term_link', item.term_id)) }}">{{ fn('esc_html', item.name) }}</a></li>
+          {% endif %}
         {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="archive-product-list">
+      {% set current_posts_id = [] %}
+      {% for post in products %}
+        {% include ["woo/tease-product.twig"] with {post: post} %}
+        {% set current_posts_id = current_posts_id|merge([post.ID]) %}
+      {% endfor %}
     </div>
 
-    {% do action('woocommerce_after_shop_loop') %}
-    {% do action('woocommerce_after_main_content') %}
+    {#% do action('woocommerce_after_shop_loop') %#}
+    {% set pager_class = null %}
+    {% if fn('is_shop') %}
+      {% if current_posts_id|length >=  products_list|length %}
+      {% set pager_class = 'pager-unvisible' %}
+      {% endif %}
+    {% elseif fn('is_product_category') %}
+      {% if current_posts_id|length >=  term.get_posts|length %}
+      {% set pager_class = 'pager-unvisible' %}
+      {% endif %}
+    {% endif %}
+    <div class="tool-pagination ajax-loadmore-pagination block-pager {{ pager_class }}">
+      <div class="ajax-loadmore-pagination-inner">
+        <a href="#" class="btn btn-ajax">{{ __('Load More', 'custom_theme') }}</a>
+      </div>
+      <input type="hidden" name="post_type" value="product">
+      <input type="hidden" name="current_posts_id" value="{{ current_posts_id|join(',') }}">
+      <input type="hidden" name="more_items" value="1">
+      <input type="hidden" name="list_result" value=".archive-product-list">
 
+      {% if fn('is_shop') %}
+        <input type="hidden" name="max_items" value="{{ products_list|length }}">
+      {% elseif fn('is_product_category') %}
+        <input type="hidden" name="taxonomy" value="{{ term.taxonomy }}">
+        <input type="hidden" name="term_id" value="{{ term.ID }}">
+        <input type="hidden" name="max_items" value="{{ term.get_posts|length }}">
+      {% endif %}
+    </div>
+  </div>
 {% endblock  %}

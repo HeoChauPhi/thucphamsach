@@ -231,8 +231,80 @@ function flexible_content($name) {
       $field['component_id'] = $key + 1;
 
       switch ($layout) {
-        case 'test':
-          print_r($field);
+        case 'block_home_products':
+          global $product;
+          $hot_products = array(
+            'post_type' => 'product',
+            'post_status' => 'publish',
+            'post__in' => $field['block_hot_products'],
+            'posts_per_page' => -1,
+            'orderby' => 'post__in'
+          );
+
+          $field['hot_products'] = Timber::get_posts($hot_products);
+
+          if ( $field['block_products_slide']['show_products_slide'] == 1 ) {
+            $product_slide = array(
+              'post_type' => 'product',
+              'post_status' => 'publish',
+              'post__not_in' => $field['block_hot_products'],
+              'posts_per_page' => $field['block_products_slide']['slide_amount']
+            );
+
+            $field['products_slide'] = Timber::get_posts($product_slide);
+          }
+
+          //print_r($field);
+
+          if (hasfiles(get_template_directory() . "/templates/**/*.twig", $layout_template)) {
+            Timber::render($layout_template, $field);
+          } else {
+            echo 'Could not find a twig file for layout type: ' . $layout_template . '<br>';
+          }
+          break;
+
+        case 'block_goc_am_thuc':
+          if ( $field['group_news_slide']['filter_slides'] == 'by_category' ) {
+            $post_slide = array(
+              'post_type' => 'post',
+              'post_status' => 'publish',
+              'category__in' => $field['group_news_slide']['filter_by_category'],
+              'posts_per_page' => $field['group_news_slide']['slide_amount']
+            );
+          } else {
+            $post_slide = array(
+              'post_type' => 'post',
+              'post_status' => 'publish',
+              'post__in' => $field['group_news_slide']['custom_news_select'],
+              'posts_per_page' => $field['group_news_slide']['slide_amount'],
+              'orderby' => 'post__in'
+            );
+          }
+
+          $field['group_news_slide']['posts_slide'] = Timber::get_posts($post_slide);
+
+          if ( $field['group_news_videos']['filter_videos'] == 'from_post' ) {
+            $post_videos = array(
+              'post_type' => 'post',
+              'post_status' => 'publish',
+              'post__in' => $field['group_news_videos']['news_videos'],
+              'posts_per_page' => -1,
+              'orderby' => 'post__in'
+            );
+          }
+
+          $field['group_news_videos']['post_videos'] = Timber::get_posts($post_videos);
+
+          $post_other = array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'post__in' => $field['group_other_news']['other_news'],
+            'orderby' => 'post__in'
+          );
+
+          $field['group_other_news']['other_post'] = Timber::get_posts($post_videos);
+          
+          //print_r($field);
 
           if (hasfiles(get_template_directory() . "/templates/**/*.twig", $layout_template)) {
             Timber::render($layout_template, $field);

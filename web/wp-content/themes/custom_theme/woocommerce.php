@@ -10,7 +10,7 @@ if ( is_singular( 'product' ) ) {
   // Get related products
   $related_limit               = wc_get_loop_prop( 'columns' );
   $related_ids                 = wc_get_related_products( $context['post']->id, $related_limit );
-  $context['related_products'] =  Timber::get_posts( $related_ids );
+  $context['related_products'] = Timber::get_posts( $related_ids );
 
   // Restore the context and loop back to the main query loop.
   wp_reset_postdata();
@@ -23,11 +23,24 @@ if ( is_singular( 'product' ) ) {
   $context['products'] = $posts;
   $context['title'] = $page->title;
 
+  if ( is_shop() ) {
+    $args = array(
+      'post_type' => 'product',
+      'post_status' => 'publish',
+      'posts_per_page' => -1
+    );
+
+    $products = Timber::get_posts($args);
+    $context['products_list'] = $products;
+  }
+
   if ( is_product_category() ) {
-      $queried_object = get_queried_object();
-      $term_id = $queried_object->term_id;
-      $context['category'] = get_term( $term_id, 'product_cat' );
-      $context['title'] = single_term_title( '', false );
+    $queried_object = get_queried_object();
+    $taxonomy = new TimberTerm();
+    $term_id = $queried_object->term_id;
+    $context['category'] = get_term( $term_id, 'product_cat' );
+    $context['term'] = $taxonomy;
+    $context['title'] = single_term_title( '', false );
   }
 
   Timber::render( 'templates/woo/archive-product.twig', $context );

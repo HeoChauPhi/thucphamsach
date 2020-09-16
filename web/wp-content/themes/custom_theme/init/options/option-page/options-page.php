@@ -22,14 +22,14 @@ function ct_page_option_metaboxes() {
   ) );
 
 
-  // Disable title
-  // $cmb->add_field( array(
-  //   'name'       => __( ' Disable Right Sidebar', 'cmb2' ),
-  //   'desc'       => __( 'Check it if you want disable this page right sidebar', 'cmb2' ),
-  //   'id'         => $prefix . 'sidebahiden',
-  //   'type'       => 'checkbox',
-  //   //'default'    => 1
-  // ) );
+  // Page container small
+  $cmb->add_field( array(
+    'name'       => __( 'Container small', 'cmb2' ),
+    'desc'       => __( 'Check it if you want display container small', 'cmb2' ),
+    'id'         => $prefix . 'small-container',
+    'type'       => 'checkbox',
+    //'default'    => 1
+  ) );
 }
 
 function framework_page($name = '') {

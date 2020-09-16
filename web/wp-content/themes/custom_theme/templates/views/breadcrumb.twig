@@ -4,13 +4,34 @@
       <a href="{{ site.url }}">{{ __('home', 'custom_theme') }}</a>
     </li>
 
-    {% if fn('get_post_type') != 'page' %}
-    <li class="breadcrumb-item">{{ fn('get_post_type') }}</li>
+    {% if tax_title is empty %}
+      {% if fn('is_singular', 'post') %}
+        {% if fn('get_option', 'page_for_posts') != 0 %}
+          {% set blog_posts_id = fn('get_option', 'page_for_posts') %}
+          <li class="breadcrumb-item"><a href="{{ fn('get_permalink', blog_posts_id) }}">{{ fn('get_the_title', blog_posts_id) }}</a></li>
+        {% else %}
+          {% set term_name = fn('get_the_category', post.ID)[0].name %}
+          {% set term_id = fn('get_the_category', post.ID)[0].term_id %}
+
+          <li class="breadcrumb-item"><a href="{{ fn('esc_url', fn('get_category_link', term_id)) }}">{{ fn('esc_html', term_name) }}</a></li>
+        {% endif %}
+      {% elseif fn('is_singular', 'product') or fn('is_product_category') %}
+        {% set shop_id = fn('get_option', 'woocommerce_shop_page_id') %}
+        <li class="breadcrumb-item"><a href="{{ fn('get_permalink', shop_id) }}">{{ fn('get_the_title', shop_id) }}</a></li>
+      {% elseif fn('get_post_type') != 'page' and fn('is_home') is empty and fn('is_shop') is empty %}
+        <li class="breadcrumb-item">{{ fn('get_post_type') }}</li>
+      {% endif %}
     {% endif %}
 
     <li class="breadcrumb-item active" aria-current="page">
       {% if tax_title %}
       {{ tax_title }}
+      {% elseif fn('is_home') %}
+      {{ fn('get_the_title', fn('get_option', 'page_for_posts')) }}
+      {% elseif fn('is_shop') %}
+      {{ fn('get_the_title', fn('get_option', 'woocommerce_shop_page_id')) }}
+      {% elseif fn('is_product_category') %}
+      {{ category.name  }}
       {% else %}
       {{ post.title|length > 100 ? post.title|slice(0, 100) ~ '...' : post.title }}
       {% endif %}

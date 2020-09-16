@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div id="main-content" class="main-content col-md-8">
+    <div id="main-content" class="main-content col-md-9">
       <div class="main-content-inner">
         <h2 class="post-title">{{ post.title }}</h2>
         <div class="post-date">{{ post.date }}</div>
@@ -10,10 +10,10 @@
       <div class="post-actions">
         {% if fn('get_the_tags', post.ID) %}
           <div class="post-tags">
-            <div class="post_tags-label">{{ __('Tags') }}</div>
+            <div class="post-tags-label">{{ __('Tags') }}</div>
             <ul class="post-tags-list">
               {% for item in fn('get_the_tags', post.ID) %}
-                <li><a href="{{ fn('get_tag_link', item.term_id) }}">{{ item.name }}</a></li>
+                <li><a href="{{ fn('esc_url', fn('get_tag_link', item.term_id)) }}">{{ fn('esc_html', item.name) }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -23,13 +23,14 @@
       </div>
 
       {% if function('comments_open') %}
-      {% include 'comments.twig' %}
-      {{ function('comment_form') }}
+      {#% include 'comments.twig' %}
+      {{ function('comment_form') }#}
+      {% include 'comments-facebook.twig' with {post_url : fn('get_permalink')} only %}
       {% endif %}
     </div>
 
-    <aside id="sidebar-left" class="sidedebar-wrapper col-md-4 order-md-first">
-      {{ fn('sidebar', 'sidebar-left') }}
+    <aside id="sidebar-right" class="sidedebar-wrapper col-md-3 order-md-last">
+      {{ fn('sidebar', 'sidebar-right') }}
     </aside>
   </div>
 </div>

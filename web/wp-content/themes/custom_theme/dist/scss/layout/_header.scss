@@ -1,0 +1,27 @@
+.header-wrapper {
+  background-color: $bg-header;
+  padding: rem(10px 0);
+
+  .header-inner {
+    align-items: center;
+    position: relative;
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto;
+    width: rem(104px);
+
+    @include breakpoint(colmd) {
+      margin: 0;
+    }
+  }
+}

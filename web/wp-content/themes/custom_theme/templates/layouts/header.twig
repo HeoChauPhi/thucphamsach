@@ -7,15 +7,25 @@
     </div>#}
 
     <div class="container">
-      <div class="header-logo">
-        <a href="{{ site.url }}" class="logo">
-          <img alt="{{ site.name }}" src="{{ site_logo }}" alt="{{ site.name }}">
-        </a>
-      </div>
+      <div class="row header-inner">
+        <div class="header-logo col-lg-2">
+          <a href="{{ site.url }}" class="logo">
+            <img alt="{{ site.name }}" src="{{ site_logo }}" alt="{{ site.name }}">
+          </a>
+        </div>
 
-      {% block navigation %}
-        <div class="block-navigation">{% include 'navigation.twig' %}</div>
-      {% endblock %}
+        {% block navigation %}
+          <div class="block-navigation col-lg-10">
+            <div id="nav-icon3" class="js-toogle--menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            {% include 'navigation.twig' %}
+          </div>
+        {% endblock %}
+      </div>
     </div>
 
     {#% if global_ppl %}

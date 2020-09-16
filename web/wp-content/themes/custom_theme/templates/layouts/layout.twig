@@ -23,14 +23,16 @@
         {% include 'header.twig' %}
       {% endblock %}
 
-      {% block feature %}
-        {% include 'feature.twig' %}
-      {% endblock %}
-
       <main role="main">
-        {% block content %}
-          {{context}}
+        {% block feature %}
+          {% include 'feature.twig' %}
         {% endblock %}
+        
+        <div class="main-wrapper">
+          {% block content %}
+            {{context}}
+          {% endblock %}
+        </div>
       </main>
 
       {% block footer %}
@@ -41,6 +43,8 @@
       {% block footer_scripts %}
       {% endblock %}
 
+      <div id="fb-root"></div>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&#38;version=v8.0&#38;appId=390858541735198&#38;autoLogAppEvents=1" nonce="xqOfwgXr"></script>
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&#38;key={{ google_api_key }}&#38;libraries=places" type="text/javascript"></script>
     </div>
   </body>

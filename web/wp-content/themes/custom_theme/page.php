@@ -27,6 +27,7 @@ $protected = post_password_required($post->ID);
 $context['protected_label'] = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
 $context['post'] = $post;
 $context['title_option'] = framework_page('title');
+$context['container_option'] = framework_page('small-container');
 
 /*print_r($post);
 die;*/

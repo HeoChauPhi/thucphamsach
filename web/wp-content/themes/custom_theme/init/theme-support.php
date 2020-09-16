@@ -18,6 +18,63 @@ function AJAX_DATA_ACTION_callback() {
   wp_die();
 }
 
+// Ajax load more
+add_action( 'wp_ajax_pager_loadmore_by_term', 'pager_loadmore_by_term_callback' );
+add_action( 'wp_ajax_nopriv_pager_loadmore_by_term', 'pager_loadmore_by_term_callback' );
+function pager_loadmore_by_term_callback() {
+  $values = $_REQUEST;
+
+  $content = '';
+  $post_ids = $values['current_posts_id'];
+  
+  if ( $values['taxonomy'] ) {
+    $args = array(
+      'post_type' => $values['post_type'],
+      'post_status' => 'publish',
+      'tax_query' => array(
+        array(
+          'taxonomy' => $values['taxonomy'],
+          'field' => 'term_id',
+          'terms' => $values['term_id'],
+        )
+      ),
+      'posts_per_page' => $values['more_items'],
+      'post__not_in' => explode(',', $values['current_posts_id'])
+    );
+  } else {
+    $args = array(
+      'post_type' => $values['post_type'],
+      'post_status' => 'publish',
+      'posts_per_page' => $values['more_items'],
+      'post__not_in' => explode(',', $values['current_posts_id'])
+    );
+  }
+
+  $context = Timber::get_context();
+  $posts = Timber::get_posts($args);
+
+  foreach ($posts as $post) {
+    $post_ids .= ',' . $post->ID;
+    $context['post'] = $post;
+
+    if ( $values['post_type'] == 'product' ) {
+      $content .= Timber::compile( 'woo/tease-product.twig', $context );
+    } else {
+      $content .= Timber::compile( 'archive-tease.twig', $context );
+    }
+  }
+
+  if (count(explode(',', $post_ids)) >= $values['max_items'] ) {
+    $pager_class = 'pager-unvisible';
+  } else {
+    $pager_class = '';
+  }
+
+  $result = json_encode(array('markup' => $content, 'post_ids' => $post_ids, 'pager_class' => $pager_class));
+  echo $result;
+  wp_die();
+}
+
 // Theme support menu
 add_theme_support( 'menus' );
 add_action('init', 'ct_support_menu');
@@ -63,7 +120,7 @@ function ct_support_move_comment_form_below( $fields ) {
 }
 
 // Set per page on each page
-add_action( 'pre_get_posts',  'ct_support_set_posts_per_page'  );
+// add_action( 'pre_get_posts',  'ct_support_set_posts_per_page'  );
 function ct_support_set_posts_per_page( $query ) {
   global $wp_the_query;
   if ( (!is_admin()) && ( $query === $wp_the_query ) && ( $query->is_archive() ) ) {
@@ -136,7 +193,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'sidebar-left',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
   // Define Sidebar Right
@@ -146,7 +203,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'sidebar-right',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
   // Define Header block
@@ -156,7 +213,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'header-top',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
   register_sidebar(array(
@@ -165,7 +222,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'header-block',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
   // Define Footer
@@ -175,7 +232,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'footer-top',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
   register_sidebar(array(
@@ -184,7 +241,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'footer-panel',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
   register_sidebar(array(
@@ -193,7 +250,7 @@ if (function_exists('register_sidebar')) {
     'id' => 'footer-bottom',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3>',
+    'before_title' => '<h3 class="block-title">',
     'after_title' => '</h3>'
   ));
 }
@@ -242,7 +299,29 @@ class ACF_custom_Widget extends WP_Widget {
 
         switch ($layout) {
           case 'test':
+
             print_r($field);
+
+            if (hasfiles(get_template_directory() . "/templates/**/*.twig", $layout_template)) {
+              Timber::render($layout_template, $field);
+            } else {
+              echo 'Could not find a twig file for layout type: ' . $layout_template . '<br>';
+            }
+            break;
+
+          case 'block_recent_posts_for_post_detail':
+
+            $args = array(
+              'post_type'       => 'post',
+              'post_status'     => 'publish',
+              'showposts'       => $field['number_of_posts'],
+              'post__not_in'    => array(get_the_ID()),
+            );
+
+            $posts = Timber::get_posts($args);
+            $field['recent_posts'] = $posts;
+
+            //print_r($field);
 
             if (hasfiles(get_template_directory() . "/templates/**/*.twig", $layout_template)) {
               Timber::render($layout_template, $field);
