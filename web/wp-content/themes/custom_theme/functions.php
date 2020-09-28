@@ -34,6 +34,9 @@ if(!is_admin()) {
     wp_register_script('lib-googlemap', get_stylesheet_directory_uri() . '/dist/js/libs/jquery.google-build-map.js', array('jquery'),  FALSE, '4.3.0', TRUE);
     wp_enqueue_script('lib-googlemap');
 
+    wp_register_script('lib-isotope', get_stylesheet_directory_uri() . '/dist/js/libs/isotope.pkgd.min.js', array('jquery'),  FALSE, '3..0.6', TRUE);
+    wp_enqueue_script('lib-isotope');
+
     wp_register_script('script', get_stylesheet_directory_uri() . '/dist/js/script.js', FALSE, '1.0.0', TRUE);
     wp_localize_script( 'script', 'themeAjax', array( 'ajaxurl' => admin_url('admin-ajax.php' )));
     wp_enqueue_script('script');

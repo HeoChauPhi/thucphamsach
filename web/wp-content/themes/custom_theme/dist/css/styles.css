@@ -12803,13 +12803,14 @@ body:not(.home) .main-wrapper:after {
   background-color: #ffffff;
   max-height: 41.7857142857rem;
   overflow-y: auto;
-  padding: 0.3571428571rem 2.1428571429rem;
+  padding: 0.3571428571rem 0rem;
 }
 .block-stores-system .stores-result .store-item {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 1.0714285714rem 0rem;
+  padding: 1.0714285714rem 2.1428571429rem;
+  width: 100%;
 }
 .block-stores-system .stores-result .store-item.store-hidden {
   display: none;

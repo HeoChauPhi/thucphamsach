@@ -71,7 +71,7 @@
     "wpackagist-plugin/crelly-slider": "1.4.3",
     "wpackagist-plugin/so-widgets-bundle": "1.17.7",
     "wpackagist-plugin/polylang": "2.8.2",
-    "wpackagist-plugin/theme-translation-for-polylang": "3.2.3",
+    "wpackagist-plugin/theme-translation-for-polylang": "3.2.4",
     "wpackagist-plugin/advanced-woocommerce-product-gallery-slider": "1.0.0"
   },
   "config": {

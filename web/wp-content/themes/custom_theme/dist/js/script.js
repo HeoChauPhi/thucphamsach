@@ -164,16 +164,55 @@
   }
 
   // Function filter when select change
-  var filter_store = function() {
-    //console.log($(this).attr('name'));
-    var select_change = $(this).attr('name');
-    var select_val = $(this).val();
+  function filter_store() {
+    var filters = {};
+    var $filterCount = $('.store-count');
 
-    $('.stores-filter-items select option:selected').prop('selected',true);
-    $('.store-item').removeClass('store-visible').addClass('store-hidden');
-    $('.store-item[' + select_change + '="' + select_val + '"]').removeClass('store-hidden').addClass('store-visible');
+    var $table = $('.stores-result').isotope({
+      layoutMode: 'vertical',
+      itemSelector: '.store-item'
+    });
+
+    var iso = $table.data('isotope');
+
+    $('.stores-filter-items').on( 'change', function( event ) {
+      var $select = $( event.target );
+      // get group key
+      var filterGroup = $select.attr('value-group');
+      // set filter for group
+      filters[ filterGroup ] = event.target.value;
+      // combine filters
+      var filterValue = concatValues( filters );
+      // set filter for Isotope
+      $table.isotope({ filter: filterValue });
+      $filterCount.text( iso.filteredItems.length );
+    });
   }
 
+  function concatValues( obj ) {
+    var value = '';
+    for ( var prop in obj ) {
+      value += obj[ prop ];
+    }
+    return value;
+  }
+
+  function Deg2Rad(deg) {
+    return deg * Math.PI / 180;
+  }
+
+  function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
+    lat1 = Deg2Rad(lat1);
+    lat2 = Deg2Rad(lat2);
+    lon1 = Deg2Rad(lon1);
+    lon2 = Deg2Rad(lon2);
+    var R = 6371; // km
+    var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+    var y = (lat2 - lat1);
+    var d = Math.sqrt(x * x + y * y) * R;
+    return d;
+  }
+  
   /* ==================================================================
    *
    * Loading Jquery
@@ -245,9 +284,7 @@
     productGallerySlider();
     $('.ajax-loadmore-pagination a').on('click', pagination_ajax_loadmore);
     $('.fancybox-viewmap').fancybox();
-    $('.stores-filter-items select').each(function(){
-      $(this).on('change', filter_store);
-    });
+    filter_store();
   });
 
   $(window).scroll(function() {
