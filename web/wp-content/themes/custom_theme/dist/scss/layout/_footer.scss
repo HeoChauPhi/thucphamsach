@@ -14,14 +14,28 @@
   paddheing-top: rem(50px);
 
   .footer-inner {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+    @include breakpoint(desktop) {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
 
 .footer-panel {
   padding-bottom: rem(30px);
+
+  .footer-inner {
+    > .row {
+      > [class*="col-md-"] {
+        margin-bottom: rem(40px);
+
+        @include breakpoint(tablet) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 
   .block-title {
     font-size: rem(16px);
@@ -60,5 +74,22 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+
+    @include breakpoint(colmdDown) {
+      flex-wrap: wrap;
+
+      .block-copyright {
+        order: 2;
+        text-align: center;
+        width: 100%;
+      }
+
+      .block-footer-links {
+        margin-bottom: rem(20px);
+        order: 1;
+        text-align: center;
+        width: 100%;
+      }
+    }
   }
 }

@@ -28,38 +28,42 @@ body:not(.home) {
   }
 
   .feature-wrapper {
-    &:before {
-      background-image: url(../images/background/bg-feature-before.png);
-      height: rem(323px);
-      left: rem(30px);
-      top: rem(100px);
-      width: rem(225px);
-    }
-
-    &:after {
-      background-image: url(../images/background/bg-feature-after.png);
-      height: rem(256px);
-      right: 0;
-      top: rem(15px);
-      width: rem(254px);
+    @include breakpoint(tablet) {
+      &:before {
+        background-image: url(../images/background/bg-feature-before.png);
+        height: rem(323px);
+        left: rem(30px);
+        top: rem(100px);
+        width: rem(225px);
+      }
+  
+      &:after {
+        background-image: url(../images/background/bg-feature-after.png);
+        height: rem(256px);
+        right: 0;
+        top: rem(15px);
+        width: rem(254px);
+      }
     }
   }
 
   .main-wrapper {
-    &:before {
-      background-image: url(../images/background/bg-main-before.png);
-      height: rem(327px);
-      left: rem(-195px);
-      bottom: rem(260px);
-      width: rem(329px);
-    }
+    @include breakpoint(tablet) {
+      &:before {
+        background-image: url(../images/background/bg-main-before.png);
+        height: rem(327px);
+        left: rem(-195px);
+        bottom: rem(260px);
+        width: rem(329px);
+      }
 
-    &:after {
-      background-image: url(../images/background/bg-main-after.png);
-      height: rem(351px);
-      right: 0;
-      bottom: rem(-87px);
-      width: rem(257px);
+      &:after {
+        background-image: url(../images/background/bg-main-after.png);
+        height: rem(351px);
+        right: 0;
+        bottom: rem(-87px);
+        width: rem(257px);
+      }
     }
   }
 }
@@ -132,4 +136,12 @@ body:not(.home) {
       }
     }
   } */
+}
+
+.main-content {
+  margin-bottom: rem(30px);
+
+  @include breakpoint(tablet) {
+    margin-bottom: 0;
+  }
 }

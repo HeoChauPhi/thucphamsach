@@ -60,7 +60,7 @@
     "timber/timber": "~1.16.0",
     "wpackagist-plugin/contact-form-7": "5.2.2",
     "mdsimpson/contact-form-7-to-database-extension": "2.10.36",
-    "wpackagist-plugin/tinymce-advanced": "5.5.0",
+    "wpackagist-plugin/tinymce-advanced": "5.5.1",
     "wpackagist-plugin/stage-file-proxy": "dev-trunk",
     "wpackagist-plugin/codepress-admin-columns": "4.2.2",
     "wpackagist-plugin/woocommerce": "4.5.2",
@@ -69,10 +69,12 @@
     "wpackagist-plugin/advanced-custom-fields-font-awesome": "3.1.1",
     "wpackagist-plugin/mailchimp-for-wp": "4.8.1",
     "wpackagist-plugin/crelly-slider": "1.4.3",
-    "wpackagist-plugin/so-widgets-bundle": "1.17.7",
+    "wpackagist-plugin/so-widgets-bundle": "1.17.8",
     "wpackagist-plugin/polylang": "2.8.2",
     "wpackagist-plugin/theme-translation-for-polylang": "3.2.4",
-    "wpackagist-plugin/advanced-woocommerce-product-gallery-slider": "1.0.0"
+    "wpackagist-plugin/advanced-woocommerce-product-gallery-slider": "1.0.0",
+    "wpackagist-plugin/user-role-editor": "4.56.1",
+    "wpackagist-plugin/wp-smtp": "1.2.1"
   },
   "config": {
     "vendor-dir": "vendor",

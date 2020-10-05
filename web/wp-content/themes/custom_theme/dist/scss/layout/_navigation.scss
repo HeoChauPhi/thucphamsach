@@ -157,6 +157,8 @@
         width: 100%;
 
         > li {
+          padding: rem(0 5px);
+
           > a {
             display: block;
             text-transform: uppercase;

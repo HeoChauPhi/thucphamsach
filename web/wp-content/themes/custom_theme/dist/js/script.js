@@ -231,7 +231,15 @@
       infinite: true,
       speed: 300,
       slidesToShow: 1,
-      adaptiveHeight: true
+      adaptiveHeight: true,
+      responsive: [
+        {
+          breakpoint: 1366,
+          settings: {
+            adaptiveHeight: false,
+          }
+        }
+      ]
     });
 
     $('.block-products-slide').slick({
@@ -242,7 +250,7 @@
       slidesToScroll: 1,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 1365,
           settings: {
             slidesToShow: 3,
             infinite: true,
@@ -250,7 +258,7 @@
           }
         },
         {
-          breakpoint: 600,
+          breakpoint: 991,
           settings: {
             slidesToShow: 2,
           }
@@ -280,6 +288,8 @@
 
     $('.block-other-post .other-post-item').matchHeight({property: 'min-height'});
     $('.block-products-slide .product-slide-item-inner').matchHeight({property: 'min-height'});
+    $('.archive-product-list:not(.related-product-list) .archive-product-item .product-item-inner').matchHeight({property: 'min-height'});
+    $('.archive-list:not(.archive-list-recent-posts) .archive-item-inner').matchHeight({property: 'min-height'});
     quantityStyle('.cart .quantity input[name="quantity"]');
     productGallerySlider();
     $('.ajax-loadmore-pagination a').on('click', pagination_ajax_loadmore);
