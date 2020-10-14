@@ -1,0 +1,10 @@
+<div class="custom-block-widget block-recent-posts">
+  <h3 class="block-title">{{ block_title }}</h3>
+  <div class="block-widget-content">
+    <div class="archive-list archive-list-recent-posts">
+      {% for item in recent_posts %}
+        {% include 'archive-tease.twig' with {post: item, post_recent: 1, display_post_image: display_post_image, display_post_desc: display_post_desc, display_post_read_more: display_post_read_more} only %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

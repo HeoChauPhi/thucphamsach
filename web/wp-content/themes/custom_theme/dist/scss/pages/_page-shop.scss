@@ -1,0 +1,130 @@
+.product-cat-filter {
+  margin-bottom: rem(35px);
+
+  .filter-list {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: rem(0 65px);
+  }
+
+  .filter-item {
+    list-style: none;
+    margin: rem(0 5px);
+
+    > a,
+    &.filter-current {
+      @extend %btn;
+      display: block;
+      min-width: auto;
+      text-align: center;
+    }
+
+    > a {
+      background-color: rgba($white, 0.3);
+    }
+  }
+}
+
+.woocommerce span.onsale {
+  @extend .onsale;
+}
+
+.archive-product-list {
+  align-items: flex-start;
+  margin: rem(0 -5px);
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  @include breakpoint(desktop) {
+    margin: rem(0 -20px);
+  }
+}
+
+.archive-product-item {
+  flex: 1 50%;
+  margin-bottom: rem(10px);
+  padding: rem(0 5px);
+  text-align: center;
+  max-width: 50%;
+  min-width: 50%;
+
+  @include breakpoint(tablet) {
+    flex: 1 33%;
+    max-width: 33%;
+    min-width: 33%;
+  }
+
+  @include breakpoint(desktop) {
+    flex: 1 20%;
+    margin-bottom: rem(40px);
+    max-width: 20%;
+    min-width: 20%;
+    padding: rem(0 20px);
+  }
+}
+
+.product-item-inner {
+  background-color: $white;
+  border-radius: rem(7px);
+  overflow: hidden;
+  padding: rem(0 10px 20px 10px);
+
+  .product-image {
+    margin: rem(0 -10px 10px -10px);
+    position: relative;
+  }
+
+  .onsale {
+    left: rem(10px);
+    top: rem(10px);
+  }
+
+  .product-title {
+    font-size: rem(14px);
+    font-weight: 400;
+    margin-bottom: rem(10px);
+
+    a {
+      color: $color-base;
+
+      &:hover {
+        color: $color-link;
+      }
+    }
+  }
+
+  .product-price {
+    align-items: flex-end;
+    display: flex;
+    font-weight: 700;
+    justify-content: space-between;
+    margin-bottom: rem(15px);
+
+    .price-publish,
+    .price-regular {
+      flex: 1;
+      text-align: center;
+    }
+
+    .price-publish {
+      color: $color-link;
+      font-size: rem(18px);
+    }
+
+    .price-regular {
+      color: lighten($color-base, 50%);
+      text-decoration: line-through;
+    }
+  }
+}
+
+.woocommerce {
+  a.add_to_cart_button {
+    @extend %add-to-cart;
+  }
+}

@@ -1,0 +1,149 @@
+.single-product-details {
+  .product-summary {
+    margin-bottom: rem(75px);
+  }
+
+  .entry-images-inner {
+    position: relative;
+
+    .onsale {
+      left: rem(15px);
+      top: rem(15px);
+    }
+
+    .images {
+      .wpgis-slider-for {
+        display: none;
+        margin-bottom: rem(45px);
+
+        &.slick-slider {
+          display: block;
+        }
+
+        .slick-slide {
+          border-radius: rem(9px);
+          overflow: hidden;
+
+          img {
+            margin: 0 auto;
+          }
+        }
+
+        .slick-arrow {
+          line-height: rem(26px);
+        }
+
+        .btn-prev {
+          @extend .fa-chevron-left;
+        }
+
+        .btn-next {
+          @extend .fa-chevron-right;
+        }
+      }
+
+      .wpgis-slider-nav {
+        display: none;
+
+        &.slick-slider {
+          display: block;
+        }
+
+        .slick-list {
+          margin: rem(0 -10px);
+          padding: 0 !important;
+        }
+
+        .slick-slide {
+          border-radius: rem(7px);
+          border: rem(1px) solid transparent;
+          height: rem(143px);
+          margin: rem(0 10px) !important;
+          overflow: hidden;
+
+          img {
+            height: auto;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+          }
+
+          &.slick-current {
+            border-color: $color-link;
+          }
+        }
+      }
+    }
+  }
+
+  .product_title {
+    font-size: rem(30px);
+    margin-bottom: rem(30px);
+  }
+
+  .summary {
+    .price {
+      margin-bottom: rem(30px);
+
+      del {
+        color: lighten($color-base, 50%);
+        font-size: rem(18px);
+        margin-right: rem(25px);
+      }
+
+      ins {
+        color: $color-link;
+        font-size: rem(24px);
+      }
+    }
+
+    .woocommerce-product-details__short-description {
+      margin-bottom: rem(55px);
+    }
+
+    form.cart {
+      display: flex;
+      margin-bottom: rem(40px);
+
+      .quantity {
+        margin-right: rem(40px);
+      }
+      
+      .single_add_to_cart_button {
+        @extend %add-to-cart;
+      }
+    }
+  }
+
+  .product-description,
+  .product-information {
+    h2 {
+      margin-bottom: rem(40px);
+
+      @include breakpoint(mobileonly) {
+        font-size: rem(24px);    
+      }
+    }
+  }
+
+  .product-description {
+    margin-bottom: rem(50px);
+  }
+}
+
+.block-related-product {
+  margin-top: rem(80px);
+
+  .block-title {
+    color: $color-link;
+    font-size: rem(30px);
+    margin-bottom: rem(35px);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .related-product-list {
+    justify-content: center;
+  }
+}

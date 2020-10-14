@@ -10026,13 +10026,19 @@ body.compensate-for-scrollbar {
   z-index: 1 !important;
 }
 
-.parallax-window {
+.parallax-window,
+.simpleParallax {
   bottom: 0;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
   z-index: -1;
+}
+.parallax-window img,
+.simpleParallax img {
+  height: auto;
+  width: 100%;
 }
 
 /*!
@@ -11737,11 +11743,25 @@ button:hover {
 }
 .block-navigation .cart-icon > a {
   font-size: 1.4285714286rem;
+  position: relative;
   text-indent: -999rem;
 }
 .block-navigation .cart-icon > a:before {
   float: left;
   text-indent: 0;
+}
+.block-navigation .cart-icon .cart-count {
+  font-family: "Roboto", sans-serif;
+  color: #000000;
+  position: absolute;
+  right: -0.8571428571rem;
+  text-indent: 0;
+  top: -0.8571428571rem;
+  z-index: 1;
+  font-size: 1rem;
+  background-color: #ffff00;
+  padding: 0.1428571429rem 0.4285714286rem;
+  border-radius: 0.3571428571rem;
 }
 .block-navigation nav.main-menu {
   font-family: "Roboto", sans-serif;
@@ -12787,6 +12807,12 @@ body:not(.home) .main-wrapper > .container {
 .block-banner-image .banner-image-inner {
   position: relative;
   width: 100%;
+  z-index: 1;
+}
+@media (max-width: 991px) {
+  .block-banner-image .banner-image-inner {
+    height: calc(var(--banner-image-height) * 3/5 ) !important;
+  }
 }
 .block-banner-image .banner-parallax-window {
   height: 100%;
@@ -13357,6 +13383,9 @@ body:not(.home) .main-wrapper > .container {
 }
 .single-product-details .entry-images-inner .images .wpgis-slider-nav .slick-slide img {
   height: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
 }
 .single-product-details .entry-images-inner .images .wpgis-slider-nav .slick-slide.slick-current {

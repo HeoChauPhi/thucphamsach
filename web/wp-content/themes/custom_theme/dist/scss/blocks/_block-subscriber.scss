@@ -1,0 +1,49 @@
+.block-subscriber {
+  margin-bottom: rem(30px);
+
+  @include breakpoint(laptop) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+    
+  @include breakpoint(desktop) {
+    margin-bottom: 0;
+  }
+
+  .block-title {
+    font-size: rem(16px);
+    margin-bottom: rem(35px);
+    text-align: center;
+    text-transform: uppercase;
+
+    @include breakpoint(laptop) {
+      font-size: rem(14px);
+      font-weight: 400;
+      margin: rem(0 37px 0 0);
+      text-align: left;
+      text-transform: unset;
+    }
+  }
+
+  .mc4wp-form-fields {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-item {
+    margin: rem(0 15px 0 0);
+  }
+
+  input[type="email"],
+  input[type="submit"] {
+    padding: rem(13px 15px);
+  }
+
+  input[type="email"] {
+    @include breakpoint(laptop) {
+      min-width: rem(320px);
+    }
+  }
+}

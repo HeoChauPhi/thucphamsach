@@ -1,0 +1,35 @@
+.archive-list {
+  .archive-post-item {
+    margin-bottom: rem(30px);
+
+    &:nth-of-type(4n+1) {
+      clear: both;
+    }
+  }
+
+  .archive-item-inner {
+    background-color: $white;
+    border-radius: rem(7px);
+    overflow: hidden;
+    padding: rem(0 25px 20px 25px);
+
+    .post-picture {
+      margin: rem(0 -25px 25px -25px);
+      text-align: center;
+    }
+
+    .post-title {
+      font-size: rem(18px);
+      margin-bottom: rem(12px);
+    }
+
+    .post-excerpt {
+      margin-bottom: rem(12px);
+    }
+
+    .post-link-icon {
+      font-size: rem(10px);
+      line-height: rem(22px);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.cover-overflow {
+  &:after {
+    background-color: rgba($black, 0.8);
+    bottom: 0;
+    content: "";
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: background-color .5s ease-in-out;
+    width: 100vw;
+    z-index: 1;
+  }
+}
+
+.fb-comments {
+  background-color: $white;
+  border-radius: rem(7px);
+  padding: rem(20px 45px 35px 45px);
+}

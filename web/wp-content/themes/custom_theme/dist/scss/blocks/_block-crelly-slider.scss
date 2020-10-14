@@ -1,0 +1,51 @@
+.block-crelly-slider {
+  .cs-progress-bar {
+    z-index: 1 !important;
+  }
+
+  .slider-header {
+    @include dancing;
+    color: $color-link;
+    font-size: rem(60px) !important;
+    text-shadow: rem(2px 2px 0px) $white, rem(-2px -2px 0px) $white;
+  }
+
+  .cs-controls {
+    .cs-next,
+    .cs-previous {
+      @extend .fas;
+      background-image: none;
+      font-size: rem(30px);
+      height: rem(51px);
+      line-height: rem(51px);
+      opacity: 0.6;
+      text-align: center;
+      width: rem(51px);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .cs-next {
+      @extend .fa-chevron-right;
+    }
+
+    .cs-previous {
+      @extend .fa-chevron-left;
+    }
+  }
+
+  .cs-navigation {
+    .cs-slide-link {
+      height: rem(8px);
+      margin: rem(4px); 
+      opacity: 1;
+      width: rem(8px);
+
+      &.cs-active {
+        background-color: $color-link;
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<div class="block-stores-system">
+  <div class="stores-filter">
+    <div class="stores-filter-items">
+      {% if map_areas %}
+      <select name="data-map-areas" value-group="map-areas">
+        <option value="" selected="selected">{{ __('Area', 'custom_theme') }}</option>
+      {% for item in map_areas %}
+        <option value=".{{ fn('strtolower', fn('strip_vn', item))|replace({' ': '_'}) }}">{{ item }}</option>
+      {% endfor %}
+      </select>
+      {% endif %}
+
+      {% if map_citys %}
+      <select name="data-map-citys" value-group="map-citys">
+        <option value="" selected="selected">{{ __('Department / City', 'custom_theme') }}</option>
+      {% for item in map_citys %}
+        <option value=".{{ fn('strtolower', fn('strip_vn', item))|replace({' ': '_'}) }}">{{ item }}</option>
+      {% endfor %}
+      </select>
+      {% endif %}
+
+      {% if map_districts %}
+      <select name="data-map-districts" value-group="map-districts">
+        <option value="" selected="selected">{{ __('Districts', 'custom_theme') }}</option>
+      {% for item in map_districts %}
+        <option value=".{{ fn('strtolower', fn('strip_vn', item))|replace({' ': '_'}) }}">{{ item }}</option>
+      {% endfor %}
+      </select>
+      {% endif %}
+      
+      {% if types %}
+      <select name="data-types" value-group="map-types">
+        <option value="" selected="selected">{{ __('Branch', 'custom_theme') }}</option>
+      {% for item in types %}
+        <option value=".{{ fn('strtolower', fn('strip_vn', item))|replace({' ': '_'}) }}">{{ item }}</option>
+      {% endfor %}
+      </select>
+      {% endif %}
+    </div>
+
+    <div class="stores-filter-location">
+      <a href="#" class="btn">{{ __('closest to me', 'custom_theme') }}</a>
+    </div>
+  </div>
+
+  <div class="stores-content">
+    <div class="stores-info">
+      <div class="stores-total"><span class="store-count">{{ total_stores }}</span> {{ __('place on', 'custom_theme') }} <span class="stores-total-place">{{ __('the nationwide', 'custom_theme') }}</span></div>
+      <div class="stores-info-theway">{{ __('how far the way', 'custom_theme') }}</div>
+    </div>
+
+    {% if stores %}
+    <div class="stores-result">
+    {% for post in stores %}
+      {% set map_area = fn('strtolower', fn('strip_vn', post.map_area))|replace({' ': '_'}) %}
+      {% set map_city = fn('strtolower', fn('strip_vn', post.map_city))|replace({' ': '_'}) %}
+      {% set map_district = fn('strtolower', fn('strip_vn', post.map_district))|replace({' ': '_'}) %}
+      {% set Map_type = fn('strtolower', fn('strip_vn', post.type))|replace({' ': '_'}) %}
+
+      <div class="store-item {{ map_area ~ ' ' ~ map_city  ~ ' ' ~ map_district  ~ ' ' ~ Map_type }}" data-lat="{{ post.latitude }}" data-lnt="{{ post.longitude }}">
+        <i class="fas fa-map-marker-alt store-icon"></i>
+        <div class="store-content">
+          <div class="store-title">{{ post.title }}</div>
+          <div class="store-info">
+            {% if post.store_mobile %}
+            <div class="store-mobile">{{ post.store_mobile }}</div>
+            <span class="stripe">|</span>
+            {% endif %}
+            <div class="store-view-map"><a class="fancybox-viewmap" href="#gmap-for-store-{{ post.ID }}">{{ __('view map', 'custom_theme') }}</a></div>
+            <div id="gmap-for-store-{{ post.ID }}" class="google-build-map" style="width: 80%; height: 650px; display: none;">
+              <div class="marker" data-lat="{{ post.latitude }}" data-lng="{{ post.longitude}}">
+                <div class="address">{{ post.title }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="store-info-theway"><span class="theway-number">0</span> km</div>
+      </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>

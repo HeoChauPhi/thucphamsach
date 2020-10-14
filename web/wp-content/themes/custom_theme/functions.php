@@ -28,7 +28,8 @@ if(!is_admin()) {
     wp_register_script('lib-fancybox', get_stylesheet_directory_uri() . '/dist/js/libs/jquery.fancybox.min.js', array('jquery'),  FALSE, '3.5.7', TRUE);
     wp_enqueue_script('lib-fancybox');
 
-    wp_register_script('lib-parallax', get_stylesheet_directory_uri() . '/dist/js/libs/parallax.min.js', array('jquery'),  FALSE, '1.5.0', TRUE);
+    //wp_register_script('lib-parallax', get_stylesheet_directory_uri() . '/dist/js/libs/parallax.min.js', array('jquery'),  FALSE, '1.5.0', TRUE);
+    wp_register_script('lib-parallax', get_stylesheet_directory_uri() . '/dist/js/libs/simpleParallax.min.js', array('jquery'),  FALSE, '5.5.1', TRUE);
     wp_enqueue_script('lib-parallax');
 
     wp_register_script('lib-googlemap', get_stylesheet_directory_uri() . '/dist/js/libs/jquery.google-build-map.js', array('jquery'),  FALSE, '4.3.0', TRUE);

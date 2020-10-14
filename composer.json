@@ -70,11 +70,15 @@
     "wpackagist-plugin/mailchimp-for-wp": "4.8.1",
     "wpackagist-plugin/crelly-slider": "1.4.3",
     "wpackagist-plugin/so-widgets-bundle": "1.17.8",
-    "wpackagist-plugin/polylang": "2.8.2",
+    "wpackagist-plugin/polylang": "2.8.3",
     "wpackagist-plugin/theme-translation-for-polylang": "3.2.4",
     "wpackagist-plugin/advanced-woocommerce-product-gallery-slider": "1.0.0",
     "wpackagist-plugin/user-role-editor": "4.56.1",
-    "wpackagist-plugin/wp-smtp": "1.2.1"
+    "wpackagist-plugin/wp-smtp": "1.2.1",
+    "wpackagist-plugin/wp-smushit": "3.7.1",
+    "wpackagist-plugin/amp": "2.0.4",
+    "wpackagist-plugin/woocommerce-ajax-cart": "1.3.17",
+    "wpackagist-plugin/wordpress-seo": "15.1"
   },
   "config": {
     "vendor-dir": "vendor",

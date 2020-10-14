@@ -1,0 +1,53 @@
+<div class="block-home-products {{ component_class }}">
+  <div class="container">
+    <div class="group-title">
+      <h2 class="block-title">{{ block_title }}</h2>
+      <div class="block-description">{{ fn('nl2br', block_description) }}</div>
+    </div>
+
+    <div class="block-hot-products">
+      <div class="row">
+        {% for post in hot_products %}
+          <div class="col-lg-4 hot-product-item">
+            <div class="hot-product-image"><img src="{{ post.thumbnail.src|resize(400, 272) }}"></div>
+            <div class="hot-product-content">
+              <h3 class="hot-product-title">{{ post.title }}</h3>
+              <div class="hot-product-attributes">
+                {% for item in post._product_attributes %}
+                  {% if item.is_visible == 1 %}
+                    <div class="hot-product-attribute-item">
+                      <span class="attribute-label">{{ item.name }}: </span>
+                      <span class="attribute-value">{{ item.value }}</span>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if block_products_slide.show_products_slide == 1 %}
+    <div class="block-products-slide">
+      {% for post in products_slide %}
+        <div class="product-slide-item">
+          <div class="product-slide-item-inner" style="max-width: 190px;">
+            <div class="product-slide-image">
+              <img src="{{ post.thumbnail.src|resize(190, 136) }}">
+              {% if post._sale_price %}
+              <span class="onsale">Sale!</span>
+              {% endif %}
+            </div>
+            <h3 class="product-slide-title">{{ post.title }}</h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="post-link-page">
+      <a href="{{ link_to_pages.url }}" {% if link_to_pages.target %}target="_blank"{% endif %}>{{ link_to_pages.title }}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.block-banner-image {
+  .banner-image-inner {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+
+    @include breakpoint(colmdDown) {
+      height: calc(var(--banner-image-height) * 3/5 ) !important;
+    }
+  }
+
+  .banner-parallax-window {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -289,12 +289,18 @@
     $('.block-other-post .other-post-item').matchHeight({property: 'min-height'});
     $('.block-products-slide .product-slide-item-inner').matchHeight({property: 'min-height'});
     $('.archive-product-list:not(.related-product-list) .archive-product-item .product-item-inner').matchHeight({property: 'min-height'});
-    $('.archive-list:not(.archive-list-recent-posts) .archive-item-inner').matchHeight({property: 'min-height'});
+    $('.archive-list:not(.archive-list-recent-posts) .archive-item-inner .post-title').matchHeight({property: 'min-height'});
+    $('.archive-list:not(.archive-list-recent-posts) .archive-item-inner .post-excerpt').matchHeight({property: 'min-height'});
     quantityStyle('.cart .quantity input[name="quantity"]');
     productGallerySlider();
     $('.ajax-loadmore-pagination a').on('click', pagination_ajax_loadmore);
     $('.fancybox-viewmap').fancybox();
     filter_store();
+
+    var image = document.getElementsByClassName('paralax-image');
+    new simpleParallax(image, {
+      scale: 1.4
+    });
   });
 
   $(window).scroll(function() {

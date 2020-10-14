@@ -1,0 +1,79 @@
+.commentlist {
+  padding: 0;
+}
+
+#comments {
+  margin-bottom: rem(50px);
+}
+
+#commentform {
+  > p {
+    margin-bottom: rem(30px) !important;
+  }
+
+  .comment-form-author,
+  .comment-form-email {
+    width: 48%;
+  }
+
+  .comment-form-author {
+    float: left;
+  }
+
+  .comment-form-email {
+    float: right;
+
+    + * {
+      clear: both;
+    }
+  }
+
+  .form-submit {
+    input#submit {
+      @include quicksandBold;
+      background-color: $color-link;
+      border-radius: rem(500px);
+      color: $white;
+    }
+  }
+}
+
+.woocommerce-Reviews-title,
+#reply-title {
+  @include quicksandBold;
+  display: block;
+  font-size: rem(30px);
+  margin-bottom: rem(40px);
+
+  @include breakpoint(mobileonly) {
+    font-size: rem(24px);    
+  }
+}
+
+.comment-form-cookies-consent {
+  display: flex;
+  justify-content: center;
+
+  input {
+    margin-right: rem(20px);
+    margin-top: rem(3px);
+  }
+}
+
+.comment-form-rating {
+  align-items: center;
+  display: flex;
+  margin-bottom: rem(30px);
+
+  label {
+    margin-right: rem(20px);
+  }
+
+  .stars {
+    margin: 0 !important;
+
+    a {
+      font-size: rem(20px);
+    }
+  }
+}

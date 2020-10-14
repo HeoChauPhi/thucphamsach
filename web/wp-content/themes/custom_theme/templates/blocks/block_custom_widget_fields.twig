@@ -1,0 +1,8 @@
+<div class="block-widget-custom-fields {{ component_class }}">
+  <h3 class="block-title">{{ block_title }}</h3>
+  <div class="widget-custom-fields">
+    {% for item in custom_list_fields %}
+      <div class="widget-custom-field-item"><span>{{ item.custom_field_label }}</span>: {{ item.custom_field_value }}</div>
+    {% endfor %}
+  </div>
+</div>

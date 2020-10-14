@@ -1,0 +1,83 @@
+<div class="block-goc-am-thuc {{ component_class }}">
+  <div class="container">
+    <div class="group-title">
+      <h2 class="block-title">{{ block_title }}</h2>
+      <div class="block-description">{{ fn('nl2br', block_description) }}</div>
+    </div>
+
+    <div class="block-inner">
+      <div class="row">
+        <div class="col-lg-6 block-post-slider-wrapper">
+          <div class="block-post-slider">
+            {% for post in group_news_slide.posts_slide %}
+              <div class="post-slider-item">
+                <div class="post-slider-image"><img src="{{ post.thumbnail.src }}"></div>
+                <h3 class="post-slider-title">{{ post.title }}</h3>
+                <div class="post-slider-info">
+                  {% for item in fn('get_field', 'group_custom_fields', post.ID) %}
+                    <div class="post-slider-info-item">
+                      <div class="post-slider-info-icon"><img src="{{ item.custom_field_icon.url }}"></div>
+                      <div class="post-slider-info-content">
+                        <div class="post-slider-info-label">{{ item.custom_field_label }}</div>
+                        <div class="post-slider-info-value">{{ item.custom_field_value }}</div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="post-slider-video"><a data-fancybox href="{{ fn('get_field', 'video_url', post.ID) }}">{{ __('Xem cách nấu', 'custom_theme') }}</a></div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-lg-6 block-post-videos-wrapper">
+          <div class="block-post-videos">
+            <h3 class="block-group-title">{{ group_news_videos.group_title }}</h3>
+
+            {% if group_news_videos.filter_videos == 'from_post' %}
+              {% for post in group_news_videos.post_videos %}
+                <div class="post-videos-item">
+                  <div class="post-videos-image"><a data-fancybox href="{{ fn('get_field', 'video_url', post.ID) }}"><img src="{{ post.thumbnail.src|resize(575, 286) }}"><i class="fas fa-play post-video-play"></i></a></div>
+                  <h3 class="post-videos-title">{{ post.title }}</h3>
+                </div>
+              {% endfor %}
+            {% else %}
+              {% for item in group_news_videos.custom_videos %}
+                <div class="post-videos-item">
+                  <div class="post-videos-image"><a data-fancybox href="{{ item.video_url }}"><img src="{{ item.video_thumbnail.url|resize(575, 286) }}"><i class="fas fa-play post-video-play"></i></a></div>
+                  <h3 class="post-videos-title">{{ item.video_title }}</h3>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="block-other-post">
+        <h3 class="block-group-title">{{ group_other_news.group_title }}</h3>
+        <div class="row other-post-list">
+          {% for post in group_other_news.other_post %}
+            <div class="other-post-item-wrapper col-md-6">
+              <div class="other-post-item">
+                <div class="other-post-image"><img src="{{ post.thumbnail.src|resize(180, 180) }}"></div>
+                <div class="other-post-content">
+                  <h3 class="other-post-title">{{ post.title }}</h3>
+                  <div class="other-post-info">
+                    {% for item in fn('get_field', 'group_custom_fields', post.ID) %}
+                      <div class="other-post-info-item">
+                        <span class="other-post-info-label">{{ item.custom_field_label }}: </span>
+                        <span class="other-post-info-value">{{ item.custom_field_value }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="other-post-video"><a data-fancybox href="{{ fn('get_field', 'video_url', post.ID) }}">{{ __('Xem cách nấu', 'custom_theme') }}</a></div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="post-link-page"><a href="{{ group_other_news.link_to_pages.url }}" {% if group_other_news.link_to_pages.target %}target="_blank"{% endif %}>{{ group_other_news.link_to_pages.title }}</a></div>
+      </div>
+    </div>
+  </div>
+</div>

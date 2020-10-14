@@ -1,0 +1,40 @@
+.block-social-link {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  .block-title {
+    font-size: rem(14px);
+    font-weight: 400;
+    margin: rem(0 20px 0 0);
+  }
+
+  .social-list--items {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .social-item {
+    margin-left: rem(10px);
+
+    a {
+      align-items: center;
+      background-color: $bg-social;
+      border-radius: rem(500px);
+      color: $white;
+      display: flex;
+      font-size: rem(18px);
+      height: rem(36px);
+      justify-content: center;
+      width: rem(36px);
+
+      &:hover {
+        background-color: $bg-social-hover;
+      }
+    }
+  }
+}

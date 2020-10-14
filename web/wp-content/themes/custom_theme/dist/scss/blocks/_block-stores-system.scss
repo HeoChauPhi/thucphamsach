@@ -1,0 +1,94 @@
+.block-stores-system {
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  width: rem($page-container-small);
+
+  .stores-filter,
+  .stores-filter-items {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .stores-filter {
+    font-size: rem(18px);
+    margin-bottom: rem(10px);
+  }
+
+  .stores-filter-items {
+    border-radius: rem(7px);
+    flex: 1;
+    margin-right: rem(10px);
+    overflow: hidden;
+
+    select {
+      background-color: $color-link;
+      border-color: darken($color-link, 20%);
+      border-style: solid;
+      border-width: rem(0 1px 0 0);
+      color: $white;
+      cursor: pointer;
+      flex: 1;
+      max-width: 25%;
+      outline: none !important;
+      padding: rem(18px 20px);
+    }
+  }
+
+  .stores-filter-location {
+    > a {
+      min-width: auto;
+      padding: rem(18px 26px);
+      white-space: nowrap;
+    }
+  }
+
+  .stores-content {
+    border-radius: rem(7px);
+    overflow: hidden;
+  }
+
+  .stores-info {
+    align-items: center;
+    background-color: $bg-form-field;
+    border-bottom: rem(1px) solid $bg-social-detail;
+    display: flex;
+    justify-content: space-between;
+    padding: rem(15px 30px);
+  }
+
+  .stores-result {
+    background-color: $white;
+    max-height: rem(585px);
+    overflow-y: auto;
+    padding: rem(5px 0);
+
+    .store-item {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding: rem(15px 30px);
+      width: 100%;
+
+      &.store-hidden {
+        display: none;
+      }
+    }
+
+    .store-icon {
+      color: $color-link;
+      font-size: rem(30px);
+    }
+
+    .store-content {
+      flex: 1;
+      padding: rem(0 20px);
+    }
+
+    .store-info-theway {
+      text-align: right;
+      width: 15%;
+    }
+  }
+}

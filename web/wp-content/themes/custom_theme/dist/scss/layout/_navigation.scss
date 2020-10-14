@@ -55,11 +55,12 @@
       display: none !important;
     }
   }
-
+  
   .cart-icon {
     > a {
       @extend .fas;
       font-size: rem(20px);
+      position: relative;
       text-indent: -999rem;
 
       &:before {
@@ -67,6 +68,20 @@
         float: left;
         text-indent: 0;
       }
+    }
+
+    .cart-count {
+      @include roboto;
+      color: $color-base;
+      position: absolute;
+      right: rem(-12px);
+      text-indent: 0;
+      top: rem(-12px);
+      z-index: 1;
+      font-size: rem(14px);
+      background-color: $color-link-hover;
+      padding: rem(2px 6px);
+      border-radius: rem(5px);
     }
   }
 

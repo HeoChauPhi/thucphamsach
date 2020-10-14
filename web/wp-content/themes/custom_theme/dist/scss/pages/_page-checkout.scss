@@ -1,0 +1,45 @@
+.page-checkout {
+  form.checkout {
+    .col2-set {
+      margin-bottom: rem(20px);
+    }
+
+    .col-1,
+    .col-2 {
+      max-width: unset;
+      padding: 0;
+    }
+  }
+
+  .woocommerce {
+    .form-row {
+      display: block;
+    }
+
+    #order_comments {
+      min-height: rem(150px);
+    }
+  }
+}
+
+.woocommerce-cart {
+  table.cart {
+    .product-remove {
+      width: rem(60px);
+
+      a.remove {
+        font-size: rem(40px);
+        height: rem(40px);
+        width: rem(40px);
+      }
+    }
+
+    .product-thumbnail {
+      width: rem(150px);
+
+      img {
+        width: rem(100px);
+      }
+    }
+  }
+}

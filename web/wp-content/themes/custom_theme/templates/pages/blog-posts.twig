@@ -1,0 +1,12 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+  <div class="container">
+    <div class="main-content-inner {% if container_option %}container-small{% endif %}">
+      {% for post in blog_posts %}
+        {% include 'archive-tease.twig' %}
+      {% endfor %}
+      {% include 'pagination.twig' %}
+    </div>
+  </div>
+{% endblock %}

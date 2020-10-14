@@ -1,0 +1,43 @@
+{
+    "key": "group_5f366e87ac5dd",
+    "title": "Group Fields for Page",
+    "fields": [
+        {
+            "key": "field_5f366eb0214c7",
+            "label": "Page Excerpt",
+            "name": "page_excerpt",
+            "type": "textarea",
+            "instructions": "Write an excerpt",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 5,
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1598382754
+}
