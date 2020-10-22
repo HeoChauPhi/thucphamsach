@@ -1,0 +1,25 @@
+.store-system-import-result-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.store-system-import-result {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+.store-system-import-result thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.store-system-import-result td,
+.store-system-import-result th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}

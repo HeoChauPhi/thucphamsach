@@ -165,28 +165,77 @@
 
   // Function filter when select change
   function filter_store() {
-    var filters = {};
-    var $filterCount = $('.store-count');
+    if ( $('.block-stores-system').length > 0 ) {
+      $.ajax({
+        url: "https://geolocation-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function(location) {
+          // $('#country').html(location.country_name);
+          // $('#state').html(location.state);
+          // $('#city').html(location.city);
+          // $('.stores-hidden input[name="current-lat"]').val(location.latitude);
+          // $('.stores-hidden input[name="current-lng"]').val(location.longitude);
+          // $('#ip').html(location.IPv4);
 
-    var $table = $('.stores-result').isotope({
-      layoutMode: 'vertical',
-      itemSelector: '.store-item'
-    });
+          $('.store-item').each(function() {
+            var store_lat = $(this).find('input[name="store-item-lat"]').val();
+            var store_lng = $(this).find('input[name="store-item-lng"]').val();
 
-    var iso = $table.data('isotope');
+            var distance = Math.ceil(PythagorasEquirectangular(location.latitude, location.longitude, store_lat, store_lng, 'K'));
 
-    $('.stores-filter-items').on( 'change', function( event ) {
-      var $select = $( event.target );
-      // get group key
-      var filterGroup = $select.attr('value-group');
-      // set filter for group
-      filters[ filterGroup ] = event.target.value;
-      // combine filters
-      var filterValue = concatValues( filters );
-      // set filter for Isotope
-      $table.isotope({ filter: filterValue });
-      $filterCount.text( iso.filteredItems.length );
-    });
+            $(this).attr('data-thewaynumber', distance);
+            $(this).find('.theway-number').text(distance);
+
+          });
+
+          var filters = {};
+          var $filterCount = $('.store-count');
+
+          var $table = $('.stores-result').isotope({
+            layoutMode: 'vertical',
+            itemSelector: '.store-item',
+            getSortData: {
+              thewaynumber: function( itemElem ) {
+                var thewaynumber = $( itemElem ).attr('data-thewaynumber');
+                return parseInt( thewaynumber );
+              }
+            }
+          });
+
+          var iso = $table.data('isotope');
+
+          $('.stores-filter-items').on( 'change', function( event ) {
+            var $select = $( event.target );
+            // get group key
+            var filterGroup = $select.attr('value-group');
+            // set filter for group
+            filters[ filterGroup ] = event.target.value;
+            // combine filters
+            var filterValue = concatValues( filters );
+            // set filter for Isotope
+            $table.isotope({ filter: filterValue });
+            $filterCount.text( iso.filteredItems.length );
+          });
+
+          $('.stores-filter-location').on( 'click', 'button', function() {
+            /* Get the element name to sort */
+            var sortValue = $(this).attr('data-sort-value');
+
+            /* Get the sorting direction: asc||desc */
+            var direction = $(this).attr('data-sort-direction');
+
+            /* convert it to a boolean */
+            var isAscending = (direction == 'asc');
+            var newDirection = (isAscending) ? 'desc' : 'asc';
+
+            /* pass it to isotope */
+            $table.isotope({ sortBy: sortValue, sortAscending: isAscending });
+
+          });
+        }
+      });
+    }
   }
 
   function concatValues( obj ) {
@@ -197,22 +246,34 @@
     return value;
   }
 
-  function Deg2Rad(deg) {
-    return deg * Math.PI / 180;
+  function PythagorasEquirectangular(lat1, lon1, lat2, lon2, unit) {
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+      return 0;
+    }
+    else {
+      var radlat1 = Math.PI * lat1/180;
+      var radlat2 = Math.PI * lat2/180;
+      var theta = lon1-lon2;
+      var radtheta = Math.PI * theta/180;
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = dist * 180/Math.PI;
+      dist = dist * 60 * 1.1515;
+      if (unit=="K") { dist = dist * 1.609344 }
+      if (unit=="N") { dist = dist * 0.8684 }
+      return dist;
+    }
   }
 
-  function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
-    lat1 = Deg2Rad(lat1);
-    lat2 = Deg2Rad(lat2);
-    lon1 = Deg2Rad(lon1);
-    lon2 = Deg2Rad(lon2);
-    var R = 6371; // km
-    var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
-    var y = (lat2 - lat1);
-    var d = Math.sqrt(x * x + y * y) * R;
-    return d;
+  // Commpare main-content with sidebar on single news
+  function customMainSidebar() {
+    var sidebar_title = $('.single-post #sidebar-right .widget-first .block-title').outerHeight(true);
+    $('.single-post .main-content.col-lg-9').css('margin-top', sidebar_title);
   }
-  
+
   /* ==================================================================
    *
    * Loading Jquery
@@ -291,6 +352,7 @@
     $('.archive-product-list:not(.related-product-list) .archive-product-item .product-item-inner').matchHeight({property: 'min-height'});
     $('.archive-list:not(.archive-list-recent-posts) .archive-item-inner .post-title').matchHeight({property: 'min-height'});
     $('.archive-list:not(.archive-list-recent-posts) .archive-item-inner .post-excerpt').matchHeight({property: 'min-height'});
+    customMainSidebar();
     quantityStyle('.cart .quantity input[name="quantity"]');
     productGallerySlider();
     $('.ajax-loadmore-pagination a').on('click', pagination_ajax_loadmore);
@@ -300,6 +362,36 @@
     var image = document.getElementsByClassName('paralax-image');
     new simpleParallax(image, {
       scale: 1.4
+    });
+
+    $('select').select2();
+
+    // Ajax notice when add to cart
+    $( 'body' ).on( 'added_to_cart', function( e, fragments, cart_hash, this_button ) {
+      $cart_count = $('.block-navigation .cart-icon .cart-count').text();
+
+      $.ajax({
+        type : "post",
+        dataType : "json",
+        url : themeAjax.ajaxurl,
+        data : {
+          action: "notice_add_to_cart",
+          product_id: this_button['context']['dataset']['product_id']
+        },
+        beforeSend: function() {},
+        success: function(response) {
+          $('.block-navigation .cart-icon .cart-count').text(parseInt($cart_count) + 1);
+
+          $('.page-wrapper').append('<div id="notice-add-to-cart" class="woocommerce-message">' + response.markup + '</div>');
+
+          setTimeout(function() {
+            $("#notice-add-to-cart").remove();
+          }, 3000);
+        },
+        error: function(response) {
+          console.log('error');
+        }
+      });
     });
   });
 

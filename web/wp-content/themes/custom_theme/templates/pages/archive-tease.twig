@@ -8,7 +8,7 @@
       </div>
       {% endif %}
       <div class="post-content">
-        <h3 class="post-title">{{ post.title }}</h3>
+        <h3 class="post-title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
 
         {% if display_post_desc and post.post_excerpt %}
         <div class="post-excerpt">{{ post.post_excerpt|excerpt(30) }}</div>
@@ -31,7 +31,7 @@
       </div>
       {% endif %}
       <div class="post-content">
-        <h3 class="post-title">{{ post.title }}</h3>
+        <h3 class="post-title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
 
         {% if post.post_excerpt %}
         <div class="post-excerpt">{{ post.post_excerpt|excerpt(30) }}</div>

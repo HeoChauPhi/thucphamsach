@@ -22,22 +22,52 @@
     margin-right: rem(10px);
     overflow: hidden;
 
-    select {
+    select,
+    .select2 {
+      flex: 1;
+      max-width: 25%;
+    }
+
+    .select2-selection {
       background-color: $color-link;
       border-color: darken($color-link, 20%);
+      border-radius: 0;
       border-style: solid;
       border-width: rem(0 1px 0 0);
       color: $white;
       cursor: pointer;
-      flex: 1;
-      max-width: 25%;
+      height: auto;
       outline: none !important;
-      padding: rem(18px 20px);
+      padding: rem(16px 20px);
+
+      .select2-selection__rendered {
+        color: $white;
+        padding: 0;
+      }
+
+      .select2-selection__arrow {
+        top: 50%;
+        transform: translateY(-50%);
+
+        > b {
+          border-color: $white transparent transparent;
+        }
+      }
+    }
+
+    .select2-container--open {
+      .select2-selection {
+        .select2-selection__arrow {
+          > b {
+            border-color: transparent transparent $white;
+          }
+        }
+      }
     }
   }
 
   .stores-filter-location {
-    > a {
+    > button {
       min-width: auto;
       padding: rem(18px 26px);
       white-space: nowrap;

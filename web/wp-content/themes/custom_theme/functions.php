@@ -38,6 +38,9 @@ if(!is_admin()) {
     wp_register_script('lib-isotope', get_stylesheet_directory_uri() . '/dist/js/libs/isotope.pkgd.min.js', array('jquery'),  FALSE, '3..0.6', TRUE);
     wp_enqueue_script('lib-isotope');
 
+    wp_register_script('lib-select2', get_stylesheet_directory_uri() . '/dist/js/libs/select2.min.js', array('jquery'),  FALSE, '4.1.0', TRUE);
+    wp_enqueue_script('lib-select2');
+
     wp_register_script('script', get_stylesheet_directory_uri() . '/dist/js/script.js', FALSE, '1.0.0', TRUE);
     wp_localize_script( 'script', 'themeAjax', array( 'ajaxurl' => admin_url('admin-ajax.php' )));
     wp_enqueue_script('script');

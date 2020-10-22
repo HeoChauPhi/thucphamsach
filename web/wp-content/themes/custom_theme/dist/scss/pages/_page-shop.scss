@@ -126,5 +126,18 @@
 .woocommerce {
   a.add_to_cart_button {
     @extend %add-to-cart;
+
+    + a.added_to_cart {
+      display: none !important;
+    }
   }
+}
+
+#notice-add-to-cart {
+  bottom: 0;
+  margin-right: rem(20px);
+  position: fixed;
+  right: 0;
+  width: rem(300px);
+  z-index: 9;
 }

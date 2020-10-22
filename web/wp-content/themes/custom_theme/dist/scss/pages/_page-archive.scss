@@ -21,6 +21,14 @@
     .post-title {
       font-size: rem(18px);
       margin-bottom: rem(12px);
+
+      a {
+        color: $black;
+
+        &:hover {
+          color: $color-link;
+        }
+      }
     }
 
     .post-excerpt {

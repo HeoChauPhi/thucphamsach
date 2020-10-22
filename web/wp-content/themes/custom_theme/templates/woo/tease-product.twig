@@ -41,10 +41,12 @@
   {{ fn('timber_set_product', post) }}
   <div class="product-item-inner">
     <div class="product-image">
-      <img src="{{ post.thumbnail.src|resize(218, 155) }}">
-      {% if post._sale_price %}
-      <span class="onsale">{{ __('Sale!', 'custom_theme') }}</span>
-      {% endif %}
+      <a href="{{ post.link }}">
+        <img src="{{ post.thumbnail.src|resize(218, 155) }}">
+        {% if post._sale_price %}
+        <span class="onsale">{{ __('Sale!', 'custom_theme') }}</span>
+        {% endif %}
+      </a>
     </div>
 
     <div class="product-content">

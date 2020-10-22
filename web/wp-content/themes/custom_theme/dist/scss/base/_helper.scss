@@ -168,7 +168,7 @@
   color: $color-link;
   font-weight: 400;
   line-height: inherit;
-  padding: rem(7px 50px 7px 20px);
+  padding: rem(7px 50px 7px 20px) !important;
 
   &:before {
     @extend .fas;
@@ -176,6 +176,20 @@
     font-size: rem(20px);
     position: absolute;
     right: rem(20px);
+  }
+
+  @include breakpoint(mobileonly) {
+    padding: rem(7px 30px 7px 10px) !important;
+
+    &:before {
+      font-size: rem(15px);
+      line-height: 20px;
+      right: rem(10px);
+    }
+  }
+
+  &:after {
+    display: none !important;
   }
 
   &:hover {
@@ -207,9 +221,13 @@
     }
   }
 
-  .qty-control {
+  .qty-control,
+  .wac-qty-button {
     background-color: $bg-form-field;
+    border-radius: 0;
+    color: $color-base;
     cursor: pointer;
+    font-weight: 400;
     padding: rem(9px 15px);
   }
 }

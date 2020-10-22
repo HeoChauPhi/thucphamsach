@@ -39,7 +39,7 @@
     </div>
 
     <div class="stores-filter-location">
-      <a href="#" class="btn">{{ __('closest to me', 'custom_theme') }}</a>
+      <button class="btn" data-sort-direction="asc" data-sort-value="thewaynumber" type="button">{{ __('closest to me', 'custom_theme') }}</button>
     </div>
   </div>
 
@@ -57,7 +57,7 @@
       {% set map_district = fn('strtolower', fn('strip_vn', post.map_district))|replace({' ': '_'}) %}
       {% set Map_type = fn('strtolower', fn('strip_vn', post.type))|replace({' ': '_'}) %}
 
-      <div class="store-item {{ map_area ~ ' ' ~ map_city  ~ ' ' ~ map_district  ~ ' ' ~ Map_type }}" data-lat="{{ post.latitude }}" data-lnt="{{ post.longitude }}">
+      <div class="store-item {{ map_area ~ ' ' ~ map_city  ~ ' ' ~ map_district  ~ ' ' ~ Map_type }}" data-lat="{{ post.latitude }}" data-lnt="{{ post.longitude }}" data-thewaynumber="2587760">
         <i class="fas fa-map-marker-alt store-icon"></i>
         <div class="store-content">
           <div class="store-title">{{ post.title }}</div>
@@ -75,9 +75,18 @@
           </div>
         </div>
         <div class="store-info-theway"><span class="theway-number">0</span> km</div>
+        <div class="store-map-hidden" style="display: none !important;">
+          <input type="hidden" name="store-item-lat" value="{{ post.latitude }}">
+          <input type="hidden" name="store-item-lng" value="{{ post.longitude }}">
+        </div>
       </div>
     {% endfor %}
     </div>
     {% endif %}
+  </div>
+
+  <div class="stores-hidden" style="display: none !important;">
+    <input type="hidden" name="current-lat" value="">
+    <input type="hidden" name="current-lng" value="">
   </div>
 </div>

@@ -58,12 +58,12 @@
     "roots/wp-password-bcrypt": "^1.0.0",
     "advanced-custom-fields-pro": "5.9.1",
     "timber/timber": "~1.16.0",
-    "wpackagist-plugin/contact-form-7": "5.2.2",
+    "wpackagist-plugin/contact-form-7": "5.3",
     "mdsimpson/contact-form-7-to-database-extension": "2.10.36",
     "wpackagist-plugin/tinymce-advanced": "5.5.1",
     "wpackagist-plugin/stage-file-proxy": "dev-trunk",
     "wpackagist-plugin/codepress-admin-columns": "4.2.2",
-    "wpackagist-plugin/woocommerce": "4.5.2",
+    "wpackagist-plugin/woocommerce": "4.6.1",
     "wpackagist-plugin/content-aware-sidebars": "3.13",
     "wpackagist-plugin/widget-css-classes": "1.5.4",
     "wpackagist-plugin/advanced-custom-fields-font-awesome": "3.1.1",
@@ -76,9 +76,9 @@
     "wpackagist-plugin/user-role-editor": "4.56.1",
     "wpackagist-plugin/wp-smtp": "1.2.1",
     "wpackagist-plugin/wp-smushit": "3.7.1",
-    "wpackagist-plugin/amp": "2.0.4",
+    "wpackagist-plugin/amp": "2.0.5",
     "wpackagist-plugin/woocommerce-ajax-cart": "1.3.17",
-    "wpackagist-plugin/wordpress-seo": "15.1"
+    "wpackagist-plugin/wordpress-seo": "15.1.1"
   },
   "config": {
     "vendor-dir": "vendor",

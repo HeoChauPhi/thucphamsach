@@ -21,6 +21,14 @@
     .hot-product-title {
       font-size: rem(24px);
       margin-bottom: rem(10px);
+
+      a {
+        color: $white;
+
+        &:hover {
+          color: $color-link;
+        }
+      }
     }
 
     .hot-product-attribute-item {
@@ -132,6 +140,14 @@
       font-size: rem(18px);
       margin: 0;
       text-align: center;
+
+      a {
+        color: $black;
+
+        &:hover {
+          color: $color-link;
+        }
+      }
     }
   }
 }

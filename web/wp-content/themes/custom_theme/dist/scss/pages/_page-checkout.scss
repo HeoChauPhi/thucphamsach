@@ -41,5 +41,11 @@
         width: rem(100px);
       }
     }
+
+    .product-quantity {
+      > .quantity {
+        @extend .group-quantity;
+      }
+    }
   }
 }

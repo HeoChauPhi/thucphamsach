@@ -75,6 +75,26 @@ function pager_loadmore_by_term_callback() {
   wp_die();
 }
 
+// Ajax notice add to cart
+add_action( 'wp_ajax_notice_add_to_cart', 'notice_add_to_cart_callback' );
+add_action( 'wp_ajax_nopriv_notice_add_to_cart', 'notice_add_to_cart_callback' );
+function notice_add_to_cart_callback() {
+  $values = $_REQUEST;
+
+  global $product;
+
+  $product_id = $values['product_id'];
+  
+  $product = new TimberPost($product_id);
+  $product_title = $product->title;
+
+  $message = __('Added') . ' "' . $product_title . '" ' . __('to cart');
+
+  $result = json_encode(array('markup' => $message));
+  echo $result;
+  wp_die();
+}
+
 // Theme support menu
 add_theme_support( 'menus' );
 add_action('init', 'ct_support_menu');

@@ -11,7 +11,7 @@
           <div class="col-lg-4 hot-product-item">
             <div class="hot-product-image"><img src="{{ post.thumbnail.src|resize(400, 272) }}"></div>
             <div class="hot-product-content">
-              <h3 class="hot-product-title">{{ post.title }}</h3>
+              <h3 class="hot-product-title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
               <div class="hot-product-attributes">
                 {% for item in post._product_attributes %}
                   {% if item.is_visible == 1 %}
@@ -39,7 +39,7 @@
               <span class="onsale">Sale!</span>
               {% endif %}
             </div>
-            <h3 class="product-slide-title">{{ post.title }}</h3>
+            <h3 class="product-slide-title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
           </div>
         </div>
       {% endfor %}
