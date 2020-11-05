@@ -95,6 +95,21 @@ function notice_add_to_cart_callback() {
   wp_die();
 }
 
+// Ajax page_cart_change
+add_action( 'wp_ajax_page_cart_change', 'page_cart_change_callback' );
+add_action( 'wp_ajax_nopriv_page_cart_change', 'page_cart_change_callback' );
+function page_cart_change_callback() {
+  $values = $_REQUEST;
+
+  global $product;
+
+  $cart_count = WC()->cart->get_cart_contents_count();
+
+  $result = json_encode(array('markup' => $cart_count));
+  echo $result;
+  wp_die();
+}
+
 // Theme support menu
 add_theme_support( 'menus' );
 add_action('init', 'ct_support_menu');

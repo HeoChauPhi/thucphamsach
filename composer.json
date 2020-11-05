@@ -14,15 +14,15 @@
       "type": "package",
       "package": {
         "name": "pantheon-systems/wordpress",
-        "version": "5.5.1",
+        "version": "5.5.3",
         "dist": {
-          "url": "https://github.com/pantheon-systems/WordPress/archive/5.5.1.zip",
+          "url": "https://github.com/pantheon-systems/WordPress/archive/5.5.3.zip",
           "type": "zip"
         },
         "source": {
           "url": "git@github.com:pantheon-systems/WordPress.git",
           "type": "git",
-          "reference": "5.5.1"
+          "reference": "5.5.3"
         },
         "type": "wordpress-core",
         "require": {
@@ -38,9 +38,9 @@
       "package": {
         "name": "advanced-custom-fields-pro",
         "type": "wordpress-plugin",
-        "version": "5.9.1",
+        "version": "5.9.3",
         "dist": {
-          "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NDcwMDB8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE0LTEyLTMwIDE5OjAxOjU1&t=5.9.1",
+          "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NDcwMDB8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE0LTEyLTMwIDE5OjAxOjU1&t=5.9.3",
           "type": "zip"
         },
         "require": {
@@ -54,9 +54,9 @@
     "composer/installers": "~1.3.0",
     "vlucas/phpdotenv": "^2.4.0",
     "wpackagist-theme/twentyseventeen": "^2.4",
-    "pantheon-systems/wordpress": "^5.5.1",
+    "pantheon-systems/wordpress": "^5.5.3",
     "roots/wp-password-bcrypt": "^1.0.0",
-    "advanced-custom-fields-pro": "5.9.1",
+    "advanced-custom-fields-pro": "5.9.3",
     "timber/timber": "~1.16.0",
     "wpackagist-plugin/contact-form-7": "5.3",
     "mdsimpson/contact-form-7-to-database-extension": "2.10.36",
@@ -70,7 +70,7 @@
     "wpackagist-plugin/mailchimp-for-wp": "4.8.1",
     "wpackagist-plugin/crelly-slider": "1.4.3",
     "wpackagist-plugin/so-widgets-bundle": "1.17.8",
-    "wpackagist-plugin/polylang": "2.8.3",
+    "wpackagist-plugin/polylang": "2.8.4",
     "wpackagist-plugin/theme-translation-for-polylang": "3.2.4",
     "wpackagist-plugin/advanced-woocommerce-product-gallery-slider": "1.0.0",
     "wpackagist-plugin/user-role-editor": "4.56.1",
@@ -78,7 +78,7 @@
     "wpackagist-plugin/wp-smushit": "3.7.1",
     "wpackagist-plugin/amp": "2.0.5",
     "wpackagist-plugin/woocommerce-ajax-cart": "1.3.17",
-    "wpackagist-plugin/wordpress-seo": "15.1.1"
+    "wpackagist-plugin/wordpress-seo": "15.2.1"
   },
   "config": {
     "vendor-dir": "vendor",

@@ -393,6 +393,24 @@
         }
       });
     });
+
+    $( 'body' ).on( 'updated_cart_totals', function(){
+      $.ajax({
+        type : "post",
+        dataType : "json",
+        url : themeAjax.ajaxurl,
+        data : {
+          action: "page_cart_change",
+        },
+        beforeSend: function() {},
+        success: function(response) {
+          $('.block-navigation .cart-icon .cart-count').text(response.markup);
+        },
+        error: function(response) {
+          console.log('error');
+        }
+      });
+    });
   });
 
   $(window).scroll(function() {
