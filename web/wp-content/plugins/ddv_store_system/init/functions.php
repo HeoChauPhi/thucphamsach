@@ -53,7 +53,7 @@ function ddv_store_system_create_custom_post_types() {
       'show_ui'               => true,
       'show_in_menu'          => true,
       'query_var'             => true,
-      'rewrite'               => array('slug' => 'store_system'),
+      'rewrite'               => array('slug' => 'cua-hang', 'with_front' => false),
       'has_archive'           => true,
       'hierarchical'          => false,
       'menu_position'         => 20,

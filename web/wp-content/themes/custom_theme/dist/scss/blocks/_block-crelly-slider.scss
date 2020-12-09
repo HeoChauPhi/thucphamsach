@@ -8,6 +8,10 @@
     color: $color-link;
     font-size: rem(60px) !important;
     text-shadow: rem(2px 2px 0px) $white, rem(-2px -2px 0px) $white;
+
+    @include breakpoint(colmdDown) {
+      text-shadow: rem(1px 1px 0px) $white, rem(-1px -1px 0px) $white;
+    }
   }
 
   .cs-controls {

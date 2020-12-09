@@ -3,9 +3,9 @@
   <head>
     <meta charset="{{site.charset}}" />
     {% if fn('is_front_page') %}
-      <title>{{site.name}} - {{site.description}}</title>
+      <title>{{site.name}}</title>
     {% else %}
-      <title>{{ fn('bloginfo') }} - {{ wp_title }}</title>
+      <title>{{ wp_title }}</title>
     {% endif %}
     <meta name="description" content="{{site.description}}">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,6 +15,14 @@
     <link rel="icon" href="{{ site_favicon }}" type="image/x-icon">
     <link rel="pingback" href="{{site.pingback_url}}" />
     <script src='https://www.google.com/recaptcha/api.js?render=explicit' async defer></script>
+
+    {% if  fn('get_field', 'schema_index', post.ID) %}
+    {{ fn('get_field', 'schema_index', post.ID) }}
+    {% endif %}
+    {% if  fn('get_field', 'meta_keyword', post.ID) %}
+    <meta name="keywords" content="{{ fn('get_field', 'meta_keyword', post.ID) }}">
+    {% endif %}
+
     {{ wp_head }}
   </head>
   <body class="{{ body_class }}" data-template="base.twig">

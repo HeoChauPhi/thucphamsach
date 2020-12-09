@@ -364,7 +364,7 @@
       scale: 1.4
     });
 
-    $('select').select2();
+    $('select:not(#rating)').select2();
 
     // Ajax notice when add to cart
     $( 'body' ).on( 'added_to_cart', function( e, fragments, cart_hash, this_button ) {
