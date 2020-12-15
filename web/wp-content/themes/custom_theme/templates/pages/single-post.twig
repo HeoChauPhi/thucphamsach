@@ -23,9 +23,11 @@
       </div>
 
       {% if function('comments_open') %}
-      {#% include 'comments.twig' %}
-      {{ function('comment_form') }#}
-      {% include 'comments-facebook.twig' with {post_url : fn('get_permalink')} only %}
+        <div class="comment-wrapper">
+        {% include 'comments.twig' %}
+        {{ function('comment_form') }}
+        </div>
+      {#% include 'comments-facebook.twig' with {post_url : fn('get_permalink')} only %#}
       {% endif %}
     </div>
 

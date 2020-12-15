@@ -6,10 +6,12 @@
         <div class="comment-author-picture"><img src="{{comment.author.avatar}}" ></div>
         <div class="comment-content">
           <div class="comment-header">
-          <span class="comment-date">{{comment.date}}</span> | <a class="comment-author" href="{{ site.url }}/author/{{comment.author.name}}">{{comment.author.name}}</a>
+          <a class="comment-author" href="{{ site.url }}/author/{{comment.author.name}}">{{comment.author.name}}</a>
+          <span class="comment-dash"> – </span>
+          <span class="comment-date">{{comment.date}}</span> 
           </div>
           <div class="comment-comment">{{comment.content}}</div>
-          <div class="comment-link-reply">{{comment.reply_link}}</div>
+          {#<div class="comment-link-reply">{{comment.reply_link}}</div>#}
         </div>
       </div>
       
@@ -20,10 +22,12 @@
               <div class="comment-author-picture"><img src="{{comment.author.avatar}}" ></div>
               <div class="comment-content">
                 <div class="comment-header">
-                  <span class="comment-date">{{comment.date}}</span> | <a class="comment-author" href="{{ site.url }}/author/{{subcomment.author.name}}">{{subcomment.author.name}}</a>
+                  <a class="comment-author" href="{{ site.url }}/author/{{subcomment.author.name}}">{{subcomment.author.name}}</a>
+                  <span class="comment-dash"> – </span>
+                  <span class="comment-date">{{comment.date}}</span>
                 </div>
                 <div class="comment-comment">{{subcomment.content}}</div>  
-                <div class="comment-link-reply">{{subcomment.reply_link}}</div>  
+                {#<div class="comment-link-reply">{{subcomment.reply_link}}</div>#}
               </div>
             </div>
           {% endfor %}

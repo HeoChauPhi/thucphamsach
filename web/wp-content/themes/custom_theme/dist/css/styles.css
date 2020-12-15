@@ -13726,8 +13726,47 @@ body:not(.home) .main-wrapper > .container {
   padding: 0;
 }
 
+#comment,
 #comments {
   margin-bottom: 3.5714285714rem;
+}
+
+#comment .comment-title {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  display: block;
+  font-size: 2.1428571429rem;
+  margin-bottom: 2.8571428571rem;
+}
+#comment .comment {
+  align-items: flex-start;
+  display: flex;
+  margin-bottom: 1.4285714286rem;
+  position: relative;
+}
+#comment .comment-author-picture {
+  width: 2.2857142857rem;
+}
+#comment .comment-content {
+  border-radius: 0.2857142857rem;
+  border: 0.0714285714rem solid #999999;
+  flex: 1;
+  margin: 0rem 0rem 0rem 1.4285714286rem;
+  padding: 1rem 1rem 0rem;
+}
+#comment .comment-header {
+  font-size: 0.8571428571rem;
+  margin-bottom: 1rem;
+}
+#comment .comment-author {
+  font-weight: bold;
+  color: #000000;
+}
+#comment .comment-author:hover {
+  color: #f72936;
+}
+#comment .comment-date {
+  color: #333333;
 }
 
 #commentform > p {
@@ -13793,6 +13832,14 @@ body:not(.home) .main-wrapper > .container {
   font-size: 1.4285714286rem;
 }
 
+.fb-comments,
+.comment-wrapper {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  display: block !important;
+  padding: 1.4285714286rem 3.2142857143rem 2.5rem 3.2142857143rem;
+}
+
 .cover-overflow:after {
   background-color: rgba(0, 0, 0, 0.8);
   bottom: 0;
@@ -13805,13 +13852,6 @@ body:not(.home) .main-wrapper > .container {
   transition: background-color 0.5s ease-in-out;
   width: 100vw;
   z-index: 1;
-}
-
-.fb-comments {
-  background-color: #ffffff;
-  border-radius: 0.5rem;
-  display: block !important;
-  padding: 1.4285714286rem 3.2142857143rem 2.5rem 3.2142857143rem;
 }
 
 .page-checkout form.checkout .col2-set {
