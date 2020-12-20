@@ -12288,12 +12288,12 @@ button:hover {
   color: #f72936;
   font-weight: 400;
   line-height: inherit;
-  padding: 0.5rem 3.5714285714rem 0.5rem 1.4285714286rem !important;
+  padding: 0.5rem 2.8571428571rem 0.5rem 1.4285714286rem !important;
 }
 .single-product-details .summary form.cart .single_add_to_cart_button:before, .woocommerce a.add_to_cart_button:before {
   font-size: 1.4285714286rem;
   position: absolute;
-  right: 1.4285714286rem;
+  right: 1.0714285714rem;
 }
 @media (max-width: 480px) {
   .single-product-details .summary form.cart .single_add_to_cart_button, .woocommerce a.add_to_cart_button {
@@ -12985,7 +12985,7 @@ body:not(.home) .main-wrapper > .container {
     background-image: url(../images/background/bg-main-before.png);
     height: 23.3571428571rem;
     left: -13.9285714286rem;
-    bottom: 18.5714285714rem;
+    bottom: 1.4285714286rem;
     width: 23.5rem;
   }
   body:not(.home) .main-wrapper:after {

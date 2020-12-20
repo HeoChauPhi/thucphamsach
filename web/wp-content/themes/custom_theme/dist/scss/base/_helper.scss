@@ -168,14 +168,14 @@
   color: $color-link;
   font-weight: 400;
   line-height: inherit;
-  padding: rem(7px 50px 7px 20px) !important;
+  padding: rem(7px 40px 7px 20px) !important;
 
   &:before {
     @extend .fas;
     @extend .fa-cart-plus;
     font-size: rem(20px);
     position: absolute;
-    right: rem(20px);
+    right: rem(15px);
   }
 
   @include breakpoint(mobileonly) {
