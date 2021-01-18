@@ -211,6 +211,17 @@ function ct_change_template_single_title() {
   the_title( '<h2 class="product_title entry-title">', '</h2>' );
 }
 
+/* Remove the default WooCommerce 3 JSON/LD structured data */ 
+function ct_remove_output_structured_data() { 
+  remove_action( 'wp_footer', array( WC()->structured_data, 'output_structured_data' ), 10 ); 
+  // This removes structured data from all frontend pages 
+  remove_action( 'woocommerce_email_order_details', array( WC()->structured_data, 'output_email_structured_data' ), 30 ); 
+  // This removes structured data from all Emails sent by WooCommerce 
+} 
+add_action( 'init', 'ct_remove_output_structured_data' );
+
+// Disable Yoast SEO Schema
+add_filter( 'wpseo_json_ld_output', '__return_false' );
 
 /*$exited_post = get_page_by_title('Trung tâm thương mại - Việt Nam tại Lô1/20 KĐT Ngã Năm Sân bay Cát Bi, Ngô Quyền, Hải Phòng', OBJECT, 'store_system');
 if ( $exited_post ) {

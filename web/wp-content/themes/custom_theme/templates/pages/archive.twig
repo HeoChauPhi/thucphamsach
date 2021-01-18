@@ -2,6 +2,10 @@
 
 {% extends 'layout.twig' %}
 
+{% block schema %}
+  {% include 'schema.twig' %}
+{% endblock %}
+
 {% block feature %}
   <div id="feature" class="feature-wrapper">
     {#<div class="feature-media parallax-window" data-parallax="scroll" data-image-src="{{ post.get_field('feature_banner').url }}" title="{{ post.get_field('feature_banner').title|replace({'-': ' ', '_': ' '}) }}"></div>#}

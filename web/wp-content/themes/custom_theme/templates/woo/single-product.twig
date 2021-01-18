@@ -6,7 +6,7 @@
 
       {% do action('woocommerce_before_single_product') %}
 
-      <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}">
+      <article itemscope class="single-product-details {{ post.class }}">
 
         <div class="row product-summary">
           <div class="entry-images col-md-7">
@@ -40,7 +40,7 @@
           <div class="col-md-5 product-comment">{{ fn('comments_template') }}</div>
         </div>
 
-        <meta itemprop="url" content="{{ post.link }}" />
+        {# <meta itemprop="url" content="{{ post.link }}" /> #}
 
       </article>
 
