@@ -156,6 +156,32 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ fn('home_url', '/article') }}"
+  },
+  "headline": "Article headline",
+  "image": {{ fn('json_encode', term.category_gallery_seo, 256) }},
+  "datePublished": "2020-10-10T08:00:00+08:00",
+  "dateModified": "2020-10-10T09:20:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Ngoc Do Van"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Google",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site_logo }}"
+    }
+  }
+}
+</script>
 <!-- End Schema for Taxonomy -->
 {% endif %}
 {# End Schema for Taxonomy #}
@@ -255,7 +281,7 @@
   "gtin13": "{{ fn('get_field', 'products_schema', product.get_id()).product_gtin13 }}",
   "Name": "{{ product.get_name() }}",
   "Image": {{ fn('json_encode', image_urls, 256) }},
-  "Description": "{{ product.get_short_description() }}",
+  "Description": "{% if fn('get_field', 'product_excerpt', product.get_id()) %}{{ fn('get_field', 'product_excerpt', product.get_id()) }}{% else %}{{ product.get_short_description() }}{% endif %}",
   "Brand": {
     "@type": "Thing",
     "Name": "Đôi Đũa Vàng"
