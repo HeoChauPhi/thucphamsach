@@ -1,0 +1,326 @@
+{# Schema for front page #}
+{% if fn('is_front_page') %}
+<!-- Schema for front page -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Ngoc Do Van",
+  "jobTitle": "SEO",
+  "image": "{{ fn('get_field', 'front_page_schema').front_page_image.url }}",
+  "worksFor": "Đôi đũa vàng",
+  "url": "https://www.facebook.com/ngocnumberone/ ",
+  "sameAs": [
+    "https://www.linkedin.com/in/ngoc-van-9902971a5"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ha Noi",
+    "addressRegion": "Viet Nam"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ fn('home_url', '#website') }}",
+  "url": "{{ fn('home_url', '/') }}",
+  "name": "{{ site.name }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ fn('home_url', '/search?q={query}') }}",
+    "query-input": "required name=query"
+  }
+}
+</script>
+<!-- End Schema for Front page -->
+{% endif %}
+{# End Schema for Front page #}
+
+{# Schema for Search page #}
+{% if fn('is_search') %}
+<!-- Schema for Search page -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Ngoc Do Van",
+  "jobTitle": "SEO",
+  "image": "{{ fn('get_field', 'front_page_schema').front_page_image.url }}",
+  "worksFor": "Đôi đũa vàng",
+  "url": "https://www.facebook.com/ngocnumberone/ ",
+  "sameAs": [
+    "https://www.linkedin.com/in/ngoc-van-9902971a5"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ha Noi",
+    "addressRegion": "Viet Nam"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ fn('home_url', '#website') }}",
+  "url": "{{ fn('home_url', '/') }}",
+  "name": "{{ site.name }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ fn('home_url', '/?s=') ~ fn('get_search_query') }}",
+    "query-input": "required name={{ fn('get_search_query') }}"
+  }
+}
+</script>
+<!-- End Schema for Search page -->
+{% endif %}
+{# End Schema for Search page #}
+
+{# Schema for Pages #}
+{% if fn('is_front_page') != 1 and fn('is_singular', 'page') or fn('is_shop') == 1 %}
+<!-- chema for Pages -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ fn('home_url', '#website') }}",
+  "url": "{{ fn('home_url', '/') }}",
+  "name": "{{ site.name }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ fn('home_url', '/search?q={query}') }}",
+    "query-input": "required name=query"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ fn('bloginfo', 'title') }}",
+      "item": "{{ fn('home_url', '/') }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ fn('get_the_title', post.ID) }}",
+      "item": "{{ fn('get_permalink', post.ID) }}"
+    }
+  ]
+}
+</script>
+<!-- End Schema for Pages -->
+{% endif %}
+{# End Schema for Pages #}
+
+{# Schema for Taxonomies #}
+{% if fn('is_archive') and fn('is_shop') != 1 %}
+<!-- Schema for Taxonomies -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ fn('home_url', '#website') }}",
+  "url": "{{ fn('home_url', '/') }}",
+  "name": "{{ site.name }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ fn('home_url', '/search?q={query}') }}",
+    "query-input": "required name=query"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ fn('bloginfo', 'title') }}",
+      "item": "{{ fn('home_url', '/') }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ title }}",
+      "item": "{{ fn('get_term_link', term.ID) }}"
+    }
+  ]
+}
+</script>
+<!-- End Schema for Taxonomy -->
+{% endif %}
+{# End Schema for Taxonomy #}
+
+{# Schema for News #}
+{% if fn('is_singular', 'post') %}
+<!-- Schema for News -->
+{% set primary_term_id = fn('yoast_get_primary_term_id', 'category', post.ID) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ fn('bloginfo', 'title') }}",
+      "item": "{{ fn('home_url', '/') }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ fn('get_term', primary_term_id).name }}",
+      "item": "{{ fn('get_term_link', primary_term_id) }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ fn('get_the_title', post.ID) }}",
+      "item": "{{ fn('get_permalink', post.ID) }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "author": {
+    "@type": "Person",
+    "name": "{{ post.author }}"
+  },
+  "cookTime": "{% if fn('get_field', 'news_schema').news_cook_time %}{{ fn('get_field', 'news_schema').news_cook_time }}{% else %}00:00{% endif %}",
+  "datePublished": "{{ post.date }}",
+  "description": "{{ post.post_excerpt|excerpt(30) }}",
+  "image": "{{ post.thumbnail.src }}",
+  "recipeIngredient": {{ fn('json_encode', fn('preg_split', '/\r\n|[\r\n]/', fn('get_field', 'news_schema').news_recipe_ingredient), 256) }},
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "https://schema.org/Comment",
+    "userInteractionCount": "{{ fn('get_comments_number', post.ID) }}"
+  },
+  "name": "{{ post.title }}",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "{% if fn('get_field', 'news_schema').news_calories %}{{ fn('get_field', 'news_schema').news_calories }}{% else %}0{% endif %}",
+    "fatContent": "{% if fn('get_field', 'news_schema').news_fat_content %}{{ fn('get_field', 'news_schema').news_fat_content }}{% else %}0{% endif %}"
+  },
+  "AggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{% if fn('get_field', 'news_schema').news_rating_value %}{{ fn('get_field', 'news_schema').news_rating_value }}{% else %}2{% endif %}",
+    "reviewCount": "{% if post.comment_count %}{{ post.comment_count }}{% else %}2{% endif %}",
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "prepTime": "{% if fn('get_field', 'news_schema').news_prep_time %}{{ fn('get_field', 'news_schema').news_prep_time }}{% else %}00:00{% endif %}",
+  "recipeInstructions": "{{ fn('get_field', 'news_schema').news_recipe_instructions }}",
+  "recipeYield": "{{ fn('get_field', 'news_schema').news_recipe_yield }}",
+  "suitableForDiet": "https://schema.org/LowFatDiet",
+  "keywords": "{{ fn('get_field', 'news_schema').news_keywords }}",
+  "recipeCuisine": "{{ fn('get_field', 'news_schema').news_recipe_cuisine }}",
+  "recipeCategory": "{{ fn('get_term', primary_term_id).name }}"
+}
+</script>
+<!-- End Schema for News -->
+{% endif %}
+{# End Schema for News #}
+
+{# Schema for Products #}
+{% if fn('is_singular', 'product') %}
+{% set shop_id = fn('get_option', 'woocommerce_shop_page_id') %}
+{% set image_urls = [] %}
+{% set gallery_ids = product.get_gallery_image_ids() %}
+{% set gallery_ids = gallery_ids|merge([product.get_image_id()]) %}
+{% for item in gallery_ids %}
+  {% set image_url = fn('wp_get_attachment_url', item) %}
+  {% set image_urls = image_urls|merge([image_url]) %}
+{% endfor %}
+
+<!-- Schema for Products -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "ProductID": "{{ product.get_id() }}",
+  "SKU": "{{ product.get_sku() }}",
+  "gtin13": "{{ fn('get_field', 'products_schema', product.get_id()).product_gtin13 }}",
+  "Name": "{{ product.get_name() }}",
+  "Image": {{ fn('json_encode', image_urls, 256) }},
+  "Description": "{{ product.get_short_description() }}",
+  "Brand": {
+    "@type": "Thing",
+    "Name": "Đôi Đũa Vàng"
+  },
+  "AggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{% if product.get_average_rating() %}{{ product.get_average_rating() }}{% else %}{{ fn('get_field', 'products_schema', product.get_id()).product_default_rating_value }}{% endif %}",
+    "reviewCount": "{% if product.get_review_count() %}{{ product.get_review_count() }}{% else %}{{ fn('get_field', 'products_schema', product.get_id()).product_default_review_count }}{% endif %}",
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "Offers": {
+    "@type": "Offer",
+    "PriceCurrency": "VND",
+    "Price": "{{ product.get_price() }}",
+    "PriceValidUntil": "2030/12/31",
+    "ItemCondition": "https://schema.org/NewCondition",
+    "Availability": "https://schema.org/InStock",
+    "Url": "{{ fn('get_permalink', product.get_id()) }}",
+    "Seller": {
+      "@type": "Organization",
+      "name": "Đôi Đũa Vàng"
+    }
+  },
+  "Review": {
+    "@type": "Review",
+    "ReviewRating": {
+      "@type": "Rating",
+      "RatingValue": "{% if product.get_average_rating() %}{{ product.get_average_rating() }}{% else %}{{ fn('get_field', 'products_schema', product.get_id()).product_default_rating_value }}{% endif %}",
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "Author": {
+      "@type": "Person",
+      "Name": "Khách hàng"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ fn('bloginfo', 'title') }}",
+      "item": "{{ fn('home_url', '/') }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ fn('get_the_title', shop_id) }}",
+      "item": "{{ fn('get_permalink', shop_id) }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.get_name() }}",
+      "item": "{{ fn('get_permalink', product.get_id()) }}"
+    }
+  ]
+}
+</script>
+<!-- End Schema for Products -->
+{% endif %}
+{# End Schema for Products #}

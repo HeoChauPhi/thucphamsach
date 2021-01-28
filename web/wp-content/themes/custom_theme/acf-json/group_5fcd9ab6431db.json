@@ -1,0 +1,478 @@
+{
+    "key": "group_5fcd9ab6431db",
+    "title": "Custom SEO",
+    "fields": [
+        {
+            "key": "field_5fcdaf771ee9a",
+            "label": "Meta Keyword",
+            "name": "meta_keyword",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5fcd9af60f75e",
+            "label": "Schema Index",
+            "name": "schema_index",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable Schema for this post",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5fed45f5c98f2",
+            "label": "Custom Schema",
+            "name": "custom_schema",
+            "type": "select",
+            "instructions": "Custom Schema for Post Type",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fcd9af60f75e",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "front_page": "Front Page",
+                "pages": "Pages",
+                "news": "News",
+                "products": "Products"
+            },
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5fee1ac94bd86",
+            "label": "Front Page Schema",
+            "name": "front_page_schema",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fcd9af60f75e",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_5fed45f5c98f2",
+                        "operator": "==",
+                        "value": "front_page"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5fee1ae04bd87",
+                    "label": "Front Page Image",
+                    "name": "front_page_image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5fed4662c98f3",
+            "label": "News Schema",
+            "name": "news_schema",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fcd9af60f75e",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_5fed45f5c98f2",
+                        "operator": "==",
+                        "value": "news"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5fed46a3c98f4",
+                    "label": "News Cook Time",
+                    "name": "news_cook_time",
+                    "type": "text",
+                    "instructions": "Time format <b>hh:mm:ss<\/b>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5fed46c5c98f5",
+                    "label": "News Recipe Ingredient",
+                    "name": "news_recipe_ingredient",
+                    "type": "textarea",
+                    "instructions": "A recipe ingredient placed on one a line",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_5fed4772c98f6",
+                    "label": "News Calories",
+                    "name": "news_calories",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5fed477ec98f7",
+                    "label": "News Fat Content",
+                    "name": "news_fat_content",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5fed4790c98f8",
+                    "label": "News Prep Time",
+                    "name": "news_prep_time",
+                    "type": "text",
+                    "instructions": "Time format <b>hh:mm:ss<\/b>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5fed47b5c98f9",
+                    "label": "News Recipe Instructions",
+                    "name": "news_recipe_instructions",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_5fed47f4c98fa",
+                    "label": "News Recipe Yield",
+                    "name": "news_recipe_yield",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5ffc1e591d7eb",
+                    "label": "News Rating Value",
+                    "name": "news_rating_value",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 2,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 2,
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5ffc1e7e1d7ec",
+                    "label": "News Keywords",
+                    "name": "news_keywords",
+                    "type": "text",
+                    "instructions": "Keywords used to describe this content. Multiple entries in a keywords list are typically delimited by commas.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5ffc1fd91d7ed",
+                    "label": "News Recipe Cuisine",
+                    "name": "news_recipe_cuisine",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5ffbdfb087e2f",
+            "label": "Products Schema",
+            "name": "products_schema",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5fcd9af60f75e",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_5fed45f5c98f2",
+                        "operator": "==",
+                        "value": "products"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_5ffbdfb087e34",
+                    "label": "Product Default Rating Value",
+                    "name": "product_default_rating_value",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 2,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 2,
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5ffbdfb087e35",
+                    "label": "Product Default Review Count",
+                    "name": "product_default_review_count",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 2,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 2,
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_5ffbdfb087e36",
+                    "label": "Product gtin13",
+                    "name": "product_gtin13",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1610435888
+}
