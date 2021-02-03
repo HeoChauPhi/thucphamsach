@@ -18,6 +18,34 @@
   margin: rem(8px 0 8px 16px);
 }
 
+.wp-block-image {
+  &.text-center {
+    figcaption {
+      text-align: center;
+    }
+  }
+
+  &.text-right {
+    figcaption {
+      text-align: right;
+    }
+  }
+}
+
+.wp-caption {
+  .text-center {
+    ~ .wp-caption-text {
+      text-align: center;
+    }
+  }
+
+  .text-right {
+    ~ .wp-caption-text {
+      text-align: right;
+    }
+  }
+}
+
 .hidden-on-desktop {
   @include breakpoint(laptop) {
     display: none;

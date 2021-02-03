@@ -12103,6 +12103,20 @@ textarea:visited {
   margin: 0.5714285714rem 0rem 0.5714285714rem 1.1428571429rem;
 }
 
+.wp-block-image.text-center figcaption {
+  text-align: center;
+}
+.wp-block-image.text-right figcaption {
+  text-align: right;
+}
+
+.wp-caption .text-center ~ .wp-caption-text {
+  text-align: center;
+}
+.wp-caption .text-right ~ .wp-caption-text {
+  text-align: right;
+}
+
 @media (min-width: 1024px) {
   .hidden-on-desktop {
     display: none;
