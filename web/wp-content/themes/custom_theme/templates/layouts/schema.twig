@@ -156,32 +156,6 @@
   ]
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema",
-  "@type": "NewsArticle",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ fn('home_url', '/article') }}"
-  },
-  "headline": "Article headline",
-  "image": {{ fn('json_encode', term.category_gallery_seo, 256) }},
-  "datePublished": "2020-10-10T08:00:00+08:00",
-  "dateModified": "2020-10-10T09:20:00+08:00",
-  "author": {
-    "@type": "Person",
-    "name": "Ngoc Do Van"
-  },
-   "publisher": {
-    "@type": "Organization",
-    "name": "Google",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ site_logo }}"
-    }
-  }
-}
-</script>
 <!-- End Schema for Taxonomy -->
 {% endif %}
 {# End Schema for Taxonomy #}
@@ -216,6 +190,37 @@
   ]
 }
 </script>
+
+{% if fn('get_term', primary_term_id).term_id == 38 %}
+{% set image_urls = [ post.thumbnail.src ] %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ fn('home_url', '/article') }}"
+  },
+  "headline": "Article headline",
+  "image": {{ fn('json_encode', image_urls, 256) }},
+  "datePublished": "{{ post.date|date('Y-m-dTh:i:s') }}",
+  "dateModified": "{{ post.modified_date|date('Y-m-dTh:i:s') }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ post.author }}"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Đôi Đũa Vàng",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site_logo }}"
+    }
+  }
+}
+</script>
+{% else %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -256,6 +261,7 @@
   "recipeCategory": "{{ fn('get_term', primary_term_id).name }}"
 }
 </script>
+{% endif %}
 <!-- End Schema for News -->
 {% endif %}
 {# End Schema for News #}
