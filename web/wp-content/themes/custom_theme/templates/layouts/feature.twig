@@ -19,7 +19,7 @@
     {% elseif fn('is_singular', 'post') %}
       {% if fn('get_option', 'page_for_posts') != 0 %}
         {% set blog_posts_id = fn('get_option', 'page_for_posts') %}
-        <h1 id="page-title">{{ fn('get_the_title', page_for_posts_id) }}</h1>
+        <h2 id="page-title">{{ fn('get_the_title', page_for_posts_id) }}</h2>
         <div class="block-header-description">
           {{ fn('get_field', 'page_excerpt', page_for_posts_id) }}
         </div>
@@ -27,7 +27,7 @@
         {% set term_name = fn('get_the_category', post.ID)[0].name %}
         {% set term_id = fn('get_the_category', post.ID)[0].term_id %}
 
-        <h1 id="page-title">{{ term_name }}</h1>
+        <h2 id="page-title">{{ term_name }}</h2>
         <div class="block-header-description">
           {{ fn('term_description', term_id) }}
         </div>

@@ -14066,6 +14066,15 @@ body:not(.home) .main-wrapper > .container {
   z-index: 9;
 }
 
+.main-content .post-title {
+  font-size: 2.1428571429rem;
+}
+@media (max-width: 480px) {
+  .main-content .post-title {
+    font-size: 2rem;
+  }
+}
+
 .post-actions,
 .post-tags,
 .post-tags-list,
