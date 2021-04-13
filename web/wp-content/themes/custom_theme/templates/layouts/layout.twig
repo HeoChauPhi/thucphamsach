@@ -27,6 +27,14 @@
     {% endif %}
 
     {{ wp_head }}
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5J23MXV');</script>
+    <!-- End Google Tag Manager -->
   </head>
   <body class="{{ body_class }}" data-template="base.twig">
     <div class="page-wrapper">
@@ -58,5 +66,10 @@
       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&#38;version=v8.0&#38;appId=390858541735198&#38;autoLogAppEvents=1" nonce="xqOfwgXr"></script>
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&#38;key={{ google_api_key }}&#38;libraries=places" type="text/javascript"></script>
     </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J23MXV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
   </body>
 </html>
