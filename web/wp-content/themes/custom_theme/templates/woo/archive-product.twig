@@ -67,7 +67,7 @@
       {% elseif fn('is_product_category') %}
         <input type="hidden" name="taxonomy" value="{{ term.taxonomy }}">
         <input type="hidden" name="term_id" value="{{ term.ID }}">
-        <input type="hidden" name="max_items" value="{{ term.get_posts|length }}">
+        <input type="hidden" name="max_items" value="{{ term.get_posts({'posts_per_page': '-1'})|length }}">
       {% endif %}
     </div>
   </div>

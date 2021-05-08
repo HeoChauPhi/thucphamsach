@@ -45,7 +45,7 @@
       </div>
     </div>
     {#% include 'pagination.twig' with {pagedtype: 'loadmore'} %#}
-    <div class="tool-pagination ajax-loadmore-pagination block-pager {% if current_posts_id|length >=  term.get_posts|length %}pager-unvisible{% endif %}">
+    <div class="tool-pagination ajax-loadmore-pagination block-pager {% if current_posts_id|length >= term.get_posts({'posts_per_page': '-1'})|length %}pager-unvisible{% endif %}">
       <div class="ajax-loadmore-pagination-inner">
         <a href="#" class="btn btn-ajax">{{ __('Load More', 'custom_theme') }}</a>
       </div>
@@ -53,7 +53,7 @@
       <input type="hidden" name="taxonomy" value="{{ term.taxonomy }}">
       <input type="hidden" name="term_id" value="{{ term.ID }}">
       <input type="hidden" name="current_posts_id" value="{{ current_posts_id|join(',') }}">
-      <input type="hidden" name="max_items" value="{{ term.get_posts|length }}">
+      <input type="hidden" name="max_items" value="{{ term.get_posts({'posts_per_page': '-1'})|length }}">
       <input type="hidden" name="more_items" value="4">
       <input type="hidden" name="list_result" value=".archive-list > .row">
     </div>
