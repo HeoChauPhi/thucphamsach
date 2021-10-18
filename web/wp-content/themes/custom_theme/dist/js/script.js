@@ -6,6 +6,7 @@
 
   // Ajax Pagination by taxonomy term
   var pagination_ajax_loadmore = function() {
+    var $this = $(this);
     var parent_ajax = $(this).parents('.ajax-loadmore-pagination');
 
     if ( parent_ajax.hasClass('pager-unvisible') ) {
@@ -36,6 +37,7 @@
       },
       beforeSend: function() {
         //parent_views.find('.load-views').empty();
+        $this.css('pointer-events', 'none');
         parent_ajax.find('.ajax-loadmore-pagination-inner').append('<span class="ajax-load-icon"></span>');
       },
       success: function(response) {
@@ -43,6 +45,7 @@
         $(list_result).append(response.markup);
         parent_ajax.find('input[name="current_posts_id"]').val(response.post_ids);
         parent_ajax.addClass(response.pager_class);
+        $this.css('pointer-events', 'auto');
         //console.log(response.post_ids);
       },
       error: function(response) {

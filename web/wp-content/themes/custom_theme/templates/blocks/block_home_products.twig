@@ -12,7 +12,7 @@
             <div class="hot-product-image"><img src="{{ post.thumbnail.src|resize(400, 272) }}"></div>
             <div class="hot-product-content">
               <h3 class="hot-product-title"><a href="{{ post.link }}">{{ post.title }}</a></h3>
-              <div class="hot-product-attributes">
+              {#<div class="hot-product-attributes">
                 {% for item in post._product_attributes %}
                   {% if item.is_visible == 1 %}
                     <div class="hot-product-attribute-item">
@@ -21,7 +21,7 @@
                     </div>
                   {% endif %}
                 {% endfor %}
-              </div>
+              </div>#}
             </div>
           </div>
         {% endfor %}
